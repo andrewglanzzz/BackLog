@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Popup.css';
 import Sticky from 'react-sticky-el';
 
