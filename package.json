@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "5.0.4",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
-  "license": "MIT",
+  "name": "backlog",
+  "version": ".1",
+  "description": "A RateYourMusic extension that allows you to BackLog albums",
+  "license": "andrewglanzzz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
+    "url": "https://github.com/andrewglanzzz/BackLog"
   },
   "scripts": {
     "build": "node utils/build.js",
