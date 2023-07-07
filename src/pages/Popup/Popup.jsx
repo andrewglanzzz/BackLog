@@ -40,6 +40,8 @@ const Popup = () => {
           <li>Link 11</li>
           <li>Link 12</li>
           <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 13</li>
         </ul>
       </nav>
     </div>
