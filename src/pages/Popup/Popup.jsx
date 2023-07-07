@@ -6,20 +6,24 @@ import './Popup.css';
 const Popup = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Popup/Popup.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-      </header>
+      <h1>BackLog</h1>
+      <nav>
+        <ul>
+          <li>Link 1</li>
+          <li>Link 2</li>
+          <li>Link 3</li>
+          <li>Link 4</li>
+          <li>Link 5</li>
+          <li>Link 6</li>
+          <li>Link 7</li>
+          <li>Link 8</li>
+          <li>Link 9</li>
+          <li>Link 10</li>
+          <li>Link 11</li>
+          <li>Link 13</li>
+          <li>Link 13</li>
+        </ul>
+      </nav>
     </div>
   );
 };
