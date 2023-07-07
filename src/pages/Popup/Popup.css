@@ -20,7 +20,6 @@ nav ul {
   right: 0px;
   text-align: center;
   height: 400px;
-  width: 100%;
   padding: 10px;
   background-color: #282c34;
   color: white;
@@ -35,4 +34,11 @@ nav ul {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.sticky-header {
+  h1 {
+    position: sticky;
+    top: 0;
+  }
 }

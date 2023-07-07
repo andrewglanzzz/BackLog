@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Popup.css';
+import Sticky from 'react-sticky-el';
 
 const Popup = () => {
   return (
     <div className="App">
-      <h1>BackLog</h1>
+      <Sticky scrollElement=".scrollarea">
+        <h1 className="sticky-header">BackLog</h1>
+      </Sticky>
+
       <nav>
         <ul>
           <li>Link 1</li>
@@ -24,6 +28,39 @@ const Popup = () => {
           <li>Link 11</li>
           <li>Link 12</li>
           <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 10</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 10</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 13</li>
+          <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 10</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 10</li>
+          <li>Link 11</li>
+          <li>Link 12</li>
+          <li>Link 13</li>
+          <li>Link 11</li>
+          <li>Link 13</li> <li>Link 13</li>
           <li>Link 11</li>
           <li>Link 12</li>
           <li>Link 13</li>
