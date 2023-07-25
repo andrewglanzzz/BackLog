@@ -8,7 +8,9 @@ const Popup = () => {
       <Sticky scrollElement=".scrollarea">
         <h1 className="sticky-header">BackLog</h1>
       </Sticky>
-
+      <button class="button-backlog" role="button">
+        BackLog this album!
+      </button>
       <nav>
         <ul>
           <li>Link 1</li>
@@ -62,21 +64,6 @@ const Popup = () => {
           <li>Link 11</li>
           <li>Link 13</li>
           <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 13</li>
         </ul>
       </nav>
     </div>
