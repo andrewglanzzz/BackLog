@@ -14,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://rateyourmusic.com/"],
+      "matches": ["*://*.rateyourmusic.com/*"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"]
     }
