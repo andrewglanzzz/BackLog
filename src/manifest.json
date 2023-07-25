@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BackLog for RateYourMusic",
+  "permissions": ["tabs", "storage"],
   "description": "A RateYourMusic extension that allows you to BackLog albums",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
@@ -24,6 +25,5 @@
       "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
       "matches": []
     }
-  ],
-  "permissions": ["tabs"]
+  ]
 }

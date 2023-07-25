@@ -3,12 +3,37 @@ import './Popup.css';
 import Sticky from 'react-sticky-el';
 
 const Popup = () => {
+  const [activeTabUrl, setActiveTabUrl] = React.useState('');
+
+  React.useEffect(() => {
+    // Listen for messages from the content script
+    chrome.runtime.onMessage.addListener((message) => {
+      if (message.action === 'sendURL') {
+        const url = message.url;
+        setActiveTabUrl(url);
+      }
+    });
+  }, []);
+
+  const handleClick = () => {
+    // Send a message to the content script to retrieve the URL
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs && tabs.length > 0) {
+        const activeTab = tabs[0];
+        const tabId = activeTab.id;
+
+        // Send a message to the content script
+        chrome.tabs.sendMessage(tabId, { action: 'getURL' });
+      }
+    });
+  };
+
   return (
     <div className="App">
       <Sticky scrollElement=".scrollarea">
         <h1 className="sticky-header">BackLog</h1>
       </Sticky>
-      <button class="button-backlog" role="button">
+      <button className="button-backlog" onClick={handleClick} role="button">
         BackLog this album!
       </button>
       <nav>
@@ -19,53 +44,9 @@ const Popup = () => {
           <li>Link 4</li>
           <li>Link 5</li>
           <li>Link 6</li>
-          <li>Link 7</li>
-          <li>Link 8</li>
-          <li>Link 9</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 13</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 10</li>
-          <li>Link 11</li>
-          <li>Link 12</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
-          <li>Link 13</li>
-          <li>Link 11</li>
         </ul>
       </nav>
+      {activeTabUrl && <p>Active Tab URL: {activeTabUrl}</p>}
     </div>
   );
 };
