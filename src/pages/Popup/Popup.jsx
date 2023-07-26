@@ -83,14 +83,14 @@ const Popup = () => {
             onClick={handleClick}
             role="button"
           >
-            BackLog this album!
+            BackLog Release
           </button>
           <button
             className="button-backlog"
             onClick={handleClear}
             role="button"
           >
-            Clear All
+            Clear BackLog
           </button>
           <nav>
             <ul>
