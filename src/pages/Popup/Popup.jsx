@@ -19,11 +19,6 @@ const Popup = () => {
         const url = message.url;
         setActiveTabUrl(url);
 
-        // Check for duplicate URL
-        if (urlList.includes(url)) {
-          throw new Error('Duplicate URL found.');
-        }
-
         // Add the URL to the URL list
         setUrlList((prevUrlList) => {
           const newUrlList = [...prevUrlList, url];
@@ -33,7 +28,7 @@ const Popup = () => {
         });
       }
     });
-  }, [urlList]);
+  }, []);
 
   const handleClick = () => {
     // Send a message to the content script to retrieve the URL
@@ -57,6 +52,12 @@ const Popup = () => {
     localStorage.setItem('urlList', JSON.stringify(updatedUrlList));
   };
 
+  const handleClear = () => {
+    // Clear the URL list and localStorage
+    setUrlList([]);
+    localStorage.removeItem('urlList');
+  };
+
   return (
     <div className="App">
       <Sticky scrollElement=".scrollarea">
@@ -64,6 +65,9 @@ const Popup = () => {
       </Sticky>
       <button className="button-backlog" onClick={handleClick} role="button">
         BackLog this album!
+      </button>
+      <button className="button-clear" onClick={handleClear} role="button">
+        Clear All
       </button>
       <nav>
         <ul>
@@ -79,7 +83,6 @@ const Popup = () => {
           ))}
         </ul>
       </nav>
-      {activeTabUrl && <p>Active Tab URL: {activeTabUrl}</p>}
     </div>
   );
 };
