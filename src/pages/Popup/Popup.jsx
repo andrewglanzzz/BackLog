@@ -44,7 +44,11 @@ const Popup = () => {
         <ul>
           {/* Render the URL list in the <ul> element */}
           {urlList.map((url, index) => (
-            <li key={index}>{url}</li>
+            <li key={index}>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {url}
+              </a>
+            </li>
           ))}
         </ul>
       </nav>
