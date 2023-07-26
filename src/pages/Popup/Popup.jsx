@@ -53,9 +53,15 @@ const Popup = () => {
   };
 
   const handleClear = () => {
-    // Clear the URL list and localStorage
-    setUrlList([]);
-    localStorage.removeItem('urlList');
+    // Show a confirmation dialog before clearing the URL list
+    const confirmed = window.confirm(
+      'Are you sure you want to clear all URLs?'
+    );
+    if (confirmed) {
+      // Clear the URL list and localStorage
+      setUrlList([]);
+      localStorage.removeItem('urlList');
+    }
   };
 
   return (
@@ -64,7 +70,7 @@ const Popup = () => {
         <h1 className="sticky-header">BackLog</h1>
       </Sticky>
       <button className="button-backlog" onClick={handleClick} role="button">
-        BackLog this release!
+        BackLog this album!
       </button>
       <button className="button-backlog" onClick={handleClear} role="button">
         Clear All
