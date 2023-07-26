@@ -109,7 +109,8 @@ const Popup = () => {
         </>
       ) : (
         <div className="warning-message">
-          <p>Are you sure you want to clear all URLs?</p>
+          <p>Are you sure you want to clear your BackLog?</p>
+          <p>This cannot be undone.</p>
           <button onClick={handleConfirmClear}>Yes</button>
           <button onClick={handleCancelClear}>Cancel</button>
         </div>
