@@ -64,9 +64,9 @@ const Popup = () => {
         <h1 className="sticky-header">BackLog</h1>
       </Sticky>
       <button className="button-backlog" onClick={handleClick} role="button">
-        BackLog this album!
+        BackLog this release!
       </button>
-      <button className="button-clear" onClick={handleClear} role="button">
+      <button className="button-backlog" onClick={handleClear} role="button">
         Clear All
       </button>
       <nav>
