@@ -4,6 +4,7 @@ import Sticky from 'react-sticky-el';
 
 const Popup = () => {
   const [activeTabUrl, setActiveTabUrl] = React.useState('');
+  const [urlList, setUrlList] = React.useState([]);
 
   React.useEffect(() => {
     // Listen for messages from the content script
@@ -11,6 +12,9 @@ const Popup = () => {
       if (message.action === 'sendURL') {
         const url = message.url;
         setActiveTabUrl(url);
+
+        // Add the URL to the URL list
+        setUrlList((prevUrlList) => [...prevUrlList, url]);
       }
     });
   }, []);
@@ -38,12 +42,10 @@ const Popup = () => {
       </button>
       <nav>
         <ul>
-          <li>Link 1</li>
-          <li>Link 2</li>
-          <li>Link 3</li>
-          <li>Link 4</li>
-          <li>Link 5</li>
-          <li>Link 6</li>
+          {/* Render the URL list in the <ul> element */}
+          {urlList.map((url, index) => (
+            <li key={index}>{url}</li>
+          ))}
         </ul>
       </nav>
       {activeTabUrl && <p>Active Tab URL: {activeTabUrl}</p>}
