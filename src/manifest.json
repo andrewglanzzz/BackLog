@@ -14,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.rateyourmusic.com/*"],
+      "matches": ["*://rateyourmusic.com/*"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"]
     }
@@ -23,7 +23,7 @@
   "web_accessible_resources": [
     {
       "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
-      "matches": []
+      "matches": ["*://rateyourmusic.com/*"]
     }
   ]
 }
