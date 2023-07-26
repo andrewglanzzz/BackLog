@@ -17,12 +17,15 @@ const Popup = () => {
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
-        const { url, albumName, artist } = message;
-        setActiveTabData({ url, albumName, artist });
+        const { url, albumName, artist, rating } = message;
+        setActiveTabData({ url, albumName, artist, rating });
 
-        // Add the URL to the URL list
+        // Add the URL and album information to the URL list
         setUrlList((prevUrlList) => {
-          const newUrlList = [...prevUrlList, { url, albumName, artist }];
+          const newUrlList = [
+            ...prevUrlList,
+            { url, albumName, artist, rating },
+          ];
           // Save the updated URL list to localStorage
           localStorage.setItem('urlList', JSON.stringify(newUrlList));
           return newUrlList;
@@ -32,14 +35,31 @@ const Popup = () => {
   }, []);
 
   const handleClick = () => {
-    // Send a message to the content script to retrieve the URL
+    // Send a message to the content script to retrieve the URL and album information
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs && tabs.length > 0) {
         const activeTab = tabs[0];
         const tabId = activeTab.id;
 
         // Send a message to the content script
-        chrome.tabs.sendMessage(tabId, { action: 'getURL' });
+        chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
+          // Handle the response from the content script
+          if (response) {
+            const { url, albumName, artist, rating } = response;
+            setActiveTabData({ url, albumName, artist, rating });
+
+            // Add the URL and album information to the URL list
+            setUrlList((prevUrlList) => {
+              const newUrlList = [
+                ...prevUrlList,
+                { url, albumName, artist, rating },
+              ];
+              // Save the updated URL list to localStorage
+              localStorage.setItem('urlList', JSON.stringify(newUrlList));
+              return newUrlList;
+            });
+          }
+        });
       }
     });
   };
@@ -94,12 +114,14 @@ const Popup = () => {
           </button>
           <nav>
             <ul>
-              {/* Render the URL list in the <ul> element */}
+              {/* Render the URL list with album information in the <ul> element */}
               {urlList.map((data, index) => (
                 <li key={index}>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {`${data.albumName} - ${data.artist}`}
                   </a>
+                  {data.rating && <span>Rating: {data.rating}</span>}{' '}
+                  {/* Display the album rating if available */}
                   {/* Add a button to delete the URL */}
                   <button onClick={() => handleDelete(index)}>X</button>
                 </li>

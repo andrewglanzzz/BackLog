@@ -16,8 +16,10 @@ function extractAlbumInfo() {
   const albumName = titleText.slice(0, startIdx);
   const artist = titleText.slice(startIdx + 4, endIdx);
 
-  const ratingElement = document.querySelector('.album_rating span');
-  const rating = ratingElement ? ratingElement.textContent.trim() : '';
+  // Use document.querySelector to select the <span> element with the class "avg_rating"
+  const ratingElement = document.querySelector('.avg_rating');
+  const rating = ratingElement.textContent.trim();
+  console.log(rating);
 
   return {
     artist: artist || '',
