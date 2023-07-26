@@ -7,6 +7,12 @@ const Popup = () => {
   const [urlList, setUrlList] = React.useState([]);
 
   React.useEffect(() => {
+    // Load the URL list from localStorage when the popup opens
+    const storedUrlList = localStorage.getItem('urlList');
+    if (storedUrlList) {
+      setUrlList(JSON.parse(storedUrlList));
+    }
+
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
@@ -14,7 +20,12 @@ const Popup = () => {
         setActiveTabUrl(url);
 
         // Add the URL to the URL list
-        setUrlList((prevUrlList) => [...prevUrlList, url]);
+        setUrlList((prevUrlList) => {
+          const newUrlList = [...prevUrlList, url];
+          // Save the updated URL list to localStorage
+          localStorage.setItem('urlList', JSON.stringify(newUrlList));
+          return newUrlList;
+        });
       }
     });
   }, []);
