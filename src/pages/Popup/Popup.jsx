@@ -19,6 +19,11 @@ const Popup = () => {
         const url = message.url;
         setActiveTabUrl(url);
 
+        // Check for duplicate URL
+        if (urlList.includes(url)) {
+          throw new Error('Duplicate URL found.');
+        }
+
         // Add the URL to the URL list
         setUrlList((prevUrlList) => {
           const newUrlList = [...prevUrlList, url];
@@ -28,7 +33,7 @@ const Popup = () => {
         });
       }
     });
-  }, []);
+  }, [urlList]);
 
   const handleClick = () => {
     // Send a message to the content script to retrieve the URL
@@ -41,6 +46,15 @@ const Popup = () => {
         chrome.tabs.sendMessage(tabId, { action: 'getURL' });
       }
     });
+  };
+
+  const handleDelete = (index) => {
+    // Remove the URL from the URL list
+    const updatedUrlList = urlList.filter((_, i) => i !== index);
+    setUrlList(updatedUrlList);
+
+    // Save the updated URL list to localStorage
+    localStorage.setItem('urlList', JSON.stringify(updatedUrlList));
   };
 
   return (
@@ -59,6 +73,8 @@ const Popup = () => {
               <a href={url} target="_blank" rel="noopener noreferrer">
                 {url}
               </a>
+              {/* Add a button to delete the URL */}
+              <button onClick={() => handleDelete(index)}>X</button>
             </li>
           ))}
         </ul>
