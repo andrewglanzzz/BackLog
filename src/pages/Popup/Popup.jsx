@@ -5,6 +5,7 @@ import Sticky from 'react-sticky-el';
 const Popup = () => {
   const [activeTabUrl, setActiveTabUrl] = React.useState('');
   const [urlList, setUrlList] = React.useState([]);
+  const [showWarning, setShowWarning] = React.useState(false);
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -53,15 +54,21 @@ const Popup = () => {
   };
 
   const handleClear = () => {
-    // Show a confirmation dialog before clearing the URL list
-    const confirmed = window.confirm(
-      'Are you sure you want to clear all URLs?'
-    );
-    if (confirmed) {
-      // Clear the URL list and localStorage
-      setUrlList([]);
-      localStorage.removeItem('urlList');
-    }
+    // Show a warning message before clearing the URL list
+    setShowWarning(true);
+  };
+
+  const handleConfirmClear = () => {
+    // Clear the URL list and localStorage
+    setUrlList([]);
+    localStorage.removeItem('urlList');
+    // Hide the warning message after the URLs are cleared
+    setShowWarning(false);
+  };
+
+  const handleCancelClear = () => {
+    // Hide the warning message if the user cancels clearing
+    setShowWarning(false);
   };
 
   return (
@@ -69,26 +76,44 @@ const Popup = () => {
       <Sticky scrollElement=".scrollarea">
         <h1 className="sticky-header">BackLog</h1>
       </Sticky>
-      <button className="button-backlog" onClick={handleClick} role="button">
-        BackLog this album!
-      </button>
-      <button className="button-backlog" onClick={handleClear} role="button">
-        Clear All
-      </button>
-      <nav>
-        <ul>
-          {/* Render the URL list in the <ul> element */}
-          {urlList.map((url, index) => (
-            <li key={index}>
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                {url}
-              </a>
-              {/* Add a button to delete the URL */}
-              <button onClick={() => handleDelete(index)}>X</button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {!showWarning ? (
+        <>
+          <button
+            className="button-backlog"
+            onClick={handleClick}
+            role="button"
+          >
+            BackLog this album!
+          </button>
+          <button
+            className="button-backlog"
+            onClick={handleClear}
+            role="button"
+          >
+            Clear All
+          </button>
+          <nav>
+            <ul>
+              {/* Render the URL list in the <ul> element */}
+              {urlList.map((url, index) => (
+                <li key={index}>
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    {url}
+                  </a>
+                  {/* Add a button to delete the URL */}
+                  <button onClick={() => handleDelete(index)}>X</button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
+      ) : (
+        <div className="warning-message">
+          <p>Are you sure you want to clear all URLs?</p>
+          <button onClick={handleConfirmClear}>Yes</button>
+          <button onClick={handleCancelClear}>Cancel</button>
+        </div>
+      )}
     </div>
   );
 };
