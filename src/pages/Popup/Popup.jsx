@@ -3,7 +3,7 @@ import './Popup.css';
 import Sticky from 'react-sticky-el';
 
 const Popup = () => {
-  const [activeTabUrl, setActiveTabUrl] = React.useState('');
+  const [activeTabData, setActiveTabData] = React.useState(null);
   const [urlList, setUrlList] = React.useState([]);
   const [showWarning, setShowWarning] = React.useState(false);
 
@@ -17,12 +17,12 @@ const Popup = () => {
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
-        const url = message.url;
-        setActiveTabUrl(url);
+        const { url, albumName, artist } = message;
+        setActiveTabData({ url, albumName, artist });
 
         // Add the URL to the URL list
         setUrlList((prevUrlList) => {
-          const newUrlList = [...prevUrlList, url];
+          const newUrlList = [...prevUrlList, { url, albumName, artist }];
           // Save the updated URL list to localStorage
           localStorage.setItem('urlList', JSON.stringify(newUrlList));
           return newUrlList;
@@ -83,22 +83,22 @@ const Popup = () => {
             onClick={handleClick}
             role="button"
           >
-            BackLog Release
+            BackLog this album!
           </button>
           <button
             className="button-backlog"
             onClick={handleClear}
             role="button"
           >
-            Clear BackLog
+            Clear All
           </button>
           <nav>
             <ul>
               {/* Render the URL list in the <ul> element */}
-              {urlList.map((url, index) => (
+              {urlList.map((data, index) => (
                 <li key={index}>
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    {url}
+                  <a href={data.url} target="_blank" rel="noopener noreferrer">
+                    {`${data.albumName} - ${data.artist}`}
                   </a>
                   {/* Add a button to delete the URL */}
                   <button onClick={() => handleDelete(index)}>X</button>
@@ -109,8 +109,7 @@ const Popup = () => {
         </>
       ) : (
         <div className="warning-message">
-          <p>Are you sure you want to clear your BackLog?</p>
-          <p>This cannot be undone.</p>
+          <p>Are you sure you want to clear all URLs?</p>
           <button onClick={handleConfirmClear}>Yes</button>
           <button onClick={handleCancelClear}>Cancel</button>
         </div>

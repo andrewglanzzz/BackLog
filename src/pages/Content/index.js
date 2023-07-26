@@ -5,14 +5,44 @@ console.log('Must reload extension for modifications to take effect.');
 
 printLine("Using the 'printLine' function from the Print Module");
 
+// Function to extract album information from the page
+function extractAlbumInfo() {
+  const titleElement = document.querySelector('title');
+  const titleText = titleElement ? titleElement.textContent.trim() : '';
+
+  // Extract album name and artist from the title
+  const startIdx = titleText.lastIndexOf(' by ');
+  const endIdx = titleText.lastIndexOf(' (');
+  const albumName = titleText.slice(0, startIdx);
+  const artist = titleText.slice(startIdx + 4, endIdx);
+
+  const ratingElement = document.querySelector('.album_rating span');
+  const rating = ratingElement ? ratingElement.textContent.trim() : '';
+
+  return {
+    artist: artist || '',
+    albumName: albumName || '',
+    rating: rating || '',
+  };
+}
+
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'getURL') {
     // Get the URL of the active tab
     const url = window.location.href;
 
-    // Send the URL back to the popup
-    chrome.runtime.sendMessage({ action: 'sendURL', url: url });
+    // Extract album information from RateYourMusic
+    const { artist, albumName, rating } = extractAlbumInfo();
+
+    // Send the URL, album name, artist, and rating back to the popup
+    chrome.runtime.sendMessage({
+      action: 'sendURL',
+      url: url,
+      albumName: albumName,
+      artist: artist,
+      rating: rating,
+    });
   }
 });
 
