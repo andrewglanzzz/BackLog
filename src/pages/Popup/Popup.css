@@ -155,6 +155,23 @@ a:visited {
   margin-left: 4px;
 }
 
+.column-headers li.recentlyAdded {
+  /* Additional styles for the Recently Added header */
+  background-color: #65c5d7;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+.column-headers li.recentlyAdded:hover {
+  /* Additional styles for the Recently Added header on hover */
+  background-color: #4d97a5;
+}
+
+.column-headers li.recentlyAdded span {
+  /* Additional styles for the arrow in the Recently Added header */
+  margin-left: 4px;
+}
+
 /* Updated styles for URL list items */
 nav ul {
   overflow-y: scroll;

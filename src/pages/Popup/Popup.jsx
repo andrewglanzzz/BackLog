@@ -66,16 +66,34 @@ const Popup = () => {
             const { url, albumName, artist, rating } = response;
             setActiveTabData({ url, albumName, artist, rating });
 
-            // Add the URL and album information to the URL list
-            setUrlList((prevUrlList) => {
-              const newUrlList = [
-                ...prevUrlList,
-                { url, albumName, artist, rating },
-              ];
+            // Check if the URL is already present in localStorage
+            const storedUrlList =
+              JSON.parse(localStorage.getItem('urlList')) || [];
+            const existingItem = storedUrlList.find((item) => item.url === url);
+
+            if (!existingItem) {
+              // If the URL is not present, add it along with the current timestamp
+              const currentTime = new Date().getTime();
+              const newItem = {
+                url,
+                albumName,
+                artist,
+                rating,
+                timestamp: currentTime,
+              };
+              const newUrlList = [...storedUrlList, newItem];
+
               // Save the updated URL list to localStorage
               localStorage.setItem('urlList', JSON.stringify(newUrlList));
-              return newUrlList;
-            });
+              setUrlList(newUrlList);
+            } else {
+              // If the URL is already present, update the timestamp
+              existingItem.timestamp = new Date().getTime();
+
+              // Save the updated URL list to localStorage
+              localStorage.setItem('urlList', JSON.stringify(storedUrlList));
+              setUrlList(storedUrlList);
+            }
           }
         });
       }
@@ -110,20 +128,21 @@ const Popup = () => {
   };
 
   const handleSort = (column) => {
-    // If the same column is clicked, toggle the sort order
-    if (column === sortColumn) {
-      setSortOrder((prevSortOrder) =>
-        prevSortOrder === 'asc' ? 'desc' : 'asc'
-      );
-    } else {
-      // Otherwise, set the new sort column and default to descending order
+    if (column === 'recentlyAdded') {
       setSortColumn(column);
-      if (column === 'rating') {
-        // For the rating column, set the default sort order to descending
-        setSortOrder('desc');
+      setSortOrder('desc'); // Set the default sort order to descending for recentlyAdded
+    } else {
+      if (column === sortColumn) {
+        setSortOrder((prevSortOrder) =>
+          prevSortOrder === 'asc' ? 'desc' : 'asc'
+        );
       } else {
-        // For other columns, set the default sort order to ascending
-        setSortOrder('asc');
+        setSortColumn(column);
+        if (column === 'rating') {
+          setSortOrder('desc'); // Set the default sort order to descending for rating
+        } else {
+          setSortOrder('asc'); // Set the default sort order to ascending for other columns
+        }
       }
     }
   };
@@ -146,13 +165,31 @@ const Popup = () => {
 
     // Sort the list based on the selected column and sort order
     sortedList.sort((a, b) => {
-      const aValue = a[sortColumn];
-      const bValue = b[sortColumn];
+      if (sortColumn === 'recentlyAdded') {
+        // Sort by recently added (timestamp)
+        const aValue = a.timestamp;
+        const bValue = b.timestamp;
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      } else {
+        // Sort by other columns (albumName, artist, rating)
+        const aValue = a[sortColumn];
+        const bValue = b[sortColumn];
 
-      // Sorting logic
-      return sortOrder === 'asc'
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
+        if (aValue === undefined || bValue === undefined) {
+          // If column value is undefined, move it to the end for ascending sort, or beginning for descending sort
+          return sortOrder === 'asc'
+            ? aValue === undefined
+              ? 1
+              : -1
+            : aValue === undefined
+            ? -1
+            : 1;
+        }
+
+        return sortOrder === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
     });
 
     return sortedList;
@@ -188,6 +225,9 @@ const Popup = () => {
               </li>
               <li onClick={() => handleSort('rating')}>
                 Rating {getSortIcon('rating')}
+              </li>
+              <li onClick={() => handleSort('dateAdded')}>
+                Recently Added {getSortIcon('dateAdded')}
               </li>
             </ul>
           </nav>
