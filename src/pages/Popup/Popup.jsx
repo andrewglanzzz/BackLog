@@ -10,10 +10,21 @@ const Popup = () => {
   const [sortOrder, setSortOrder] = React.useState('asc');
 
   React.useEffect(() => {
-    // Load the URL list from localStorage when the popup opens
+    // Load the URL list and sorting preferences from localStorage when the popup opens
     const storedUrlList = localStorage.getItem('urlList');
+    const storedSortColumn = localStorage.getItem('sortColumn');
+    const storedSortOrder = localStorage.getItem('sortOrder');
+
     if (storedUrlList) {
       setUrlList(JSON.parse(storedUrlList));
+    }
+
+    if (storedSortColumn) {
+      setSortColumn(storedSortColumn);
+    }
+
+    if (storedSortOrder) {
+      setSortOrder(storedSortOrder);
     }
 
     // Listen for messages from the content script
@@ -94,15 +105,21 @@ const Popup = () => {
   };
 
   const handleSort = (column) => {
-    // If the same column is clicked, toggle the sort order
     if (column === sortColumn) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder((prevSortOrder) =>
+        prevSortOrder === 'asc' ? 'desc' : 'asc'
+      );
     } else {
-      // Otherwise, set the new sort column and default to ascending order
       setSortColumn(column);
       setSortOrder('asc');
     }
   };
+
+  React.useEffect(() => {
+    // Save sorting preferences to local storage whenever they change
+    localStorage.setItem('sortColumn', sortColumn);
+    localStorage.setItem('sortOrder', sortOrder);
+  }, [sortColumn, sortOrder]);
 
   const getSortIcon = () => {
     if (sortOrder === 'asc') {
