@@ -218,7 +218,7 @@ const Popup = () => {
             <ul>
               {/* Render the column headers with sorting icons */}
               <li onClick={() => handleSort('albumName')}>
-                Album Title {getSortIcon('albumName')}
+                Album {getSortIcon('albumName')}
               </li>
               <li onClick={() => handleSort('artist')}>
                 Artist {getSortIcon('artist')}
@@ -227,7 +227,7 @@ const Popup = () => {
                 Rating {getSortIcon('rating')}
               </li>
               <li onClick={() => handleSort('dateAdded')}>
-                Recently Added {getSortIcon('dateAdded')}
+                Added {getSortIcon('dateAdded')}
               </li>
             </ul>
           </nav>
