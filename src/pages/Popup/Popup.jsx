@@ -130,9 +130,14 @@ const Popup = () => {
 
   const getSortIcon = (column) => {
     if (sortColumn === column) {
-      return sortOrder === 'asc' ? <span>&darr;</span> : <span>&uarr;</span>;
+      if (column === 'rating') {
+        return sortOrder === 'desc' ? <span>&darr;</span> : <span>&uarr;</span>;
+      } else {
+        return sortOrder === 'asc' ? <span>&darr;</span> : <span>&uarr;</span>;
+      }
+    } else {
+      return null;
     }
-    return null;
   };
 
   const sortedUrlList = React.useMemo(() => {
