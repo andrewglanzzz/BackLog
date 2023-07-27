@@ -139,6 +139,7 @@ a:visited {
   font-weight: bold;
   border-radius: 0;
   transition: background-color 0.3s ease;
+  font-size: 90%; /* Set the font size to 75% of the original size */
 }
 
 .column-headers li:first-child {
