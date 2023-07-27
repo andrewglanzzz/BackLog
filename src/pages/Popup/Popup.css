@@ -11,10 +11,6 @@
 
 .App {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
   text-align: center;
   height: 400px;
   padding: 10px;
@@ -51,7 +47,10 @@
   border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
 
+  -webkit-text-stroke: 0.1px black;
   color: #fff;
+  text-decoration: none;
+  font-weight: bold;
   background: #65c5d7;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
@@ -72,7 +71,10 @@
   border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
 
+  -webkit-text-stroke: 0.1px black;
   color: #fff;
+  text-decoration: none;
+  font-weight: bold;
   background: #65c5d7;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
@@ -121,6 +123,10 @@ a:visited {
   padding: 0;
   margin: 0;
   list-style: none;
+  -webkit-text-stroke: 0.1px black;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .column-headers li {
@@ -203,6 +209,12 @@ nav li {
   border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
+}
+
+nav ul li a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold; /* Add bold font-weight to the album name and artist name */
 }
 
 nav li a {

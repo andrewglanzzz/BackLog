@@ -242,7 +242,12 @@ const Popup = () => {
                   {data.rating && <span>Rating: {data.rating}</span>}{' '}
                   {/* Display the album rating if available */}
                   {/* Add a button to delete the URL */}
-                  <button onClick={() => handleDelete(data.url)}>X</button>
+                  <button
+                    className="button-delete"
+                    onClick={() => handleDelete(data.url)}
+                  >
+                    X
+                  </button>
                 </li>
               ))}
             </ul>
