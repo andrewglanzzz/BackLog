@@ -4,10 +4,6 @@ h1 {
   text-align: center;
 }
 
-nav ul {
-  overflow-y: scroll;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -164,9 +160,18 @@ nav ul {
 }
 
 nav ul li {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: flex; /* Display list items in a flex container */
+  align-items: center; /* Center contents vertically */
+  padding: 8px;
+  background-color: #14171f; /* Slightly darker than the app background */
+  border: 1px solid #ddd;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+}
+
+nav ul li:hover {
+  background-color: #2c303d; /* Change background color on hover */
 }
 
 nav li {
