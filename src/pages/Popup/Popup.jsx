@@ -251,10 +251,11 @@ const Popup = () => {
             Clear All
           </button>
           <input
+            className="input-search"
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search for albums or artists..."
+            placeholder="Search BackLog..."
           />
           <nav className="column-headers">
             <ul>
