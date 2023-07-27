@@ -51,6 +51,7 @@ nav ul {
   border: none;
   margin-left: -10px;
   margin-bottom: 10px;
+  border: 2px solid #ddd;
 
   color: #fff;
   background: #65c5d7;
@@ -70,6 +71,7 @@ nav ul {
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
+  border: 2px solid #ddd;
 
   color: #fff;
   background: #65c5d7;
@@ -128,18 +130,18 @@ a:visited {
   padding: 8px;
   cursor: pointer;
   background-color: #65c5d7;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
 .column-headers li:first-child {
-  border-left: 1px solid #ddd;
+  border-left: 2px solid #ddd;
   border-top-left-radius: 8px; /* Rounded top-left corner for the first column header */
   border-bottom-left-radius: 8px; /* Rounded bottom-left corner for the first column header */
 }
 
 .column-headers li:last-child {
-  border-right: 1px solid #ddd;
+  border-right: 2px solid #ddd;
   border-top-right-radius: 8px; /* Rounded top-right corner for the last column header */
   border-bottom-right-radius: 8px; /* Rounded bottom-right corner for the last column header */
 }
