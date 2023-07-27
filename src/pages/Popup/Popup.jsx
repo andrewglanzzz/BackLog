@@ -151,7 +151,7 @@ const Popup = () => {
           >
             Clear All
           </button>
-          <nav>
+          <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}
               <li onClick={() => handleSort('albumName')}>
@@ -161,7 +161,7 @@ const Popup = () => {
                 Artist {sortColumn === 'artist' && getSortIcon()}
               </li>
               <li onClick={() => handleSort('rating')}>
-                Album Rating {sortColumn === 'rating' && getSortIcon()}
+                Rating {sortColumn === 'rating' && getSortIcon()}
               </li>
             </ul>
           </nav>
