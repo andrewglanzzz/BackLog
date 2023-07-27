@@ -167,3 +167,28 @@ nav ul {
   margin-left: 4px;
   display: inline; /* Make the rating inline with the album and artist information */
 }
+
+nav li {
+  display: flex; /* Display list items in a flex container */
+  align-items: center; /* Center contents vertically */
+  justify-content: space-between; /* Spread contents evenly in the available space */
+  padding: 8px;
+  background-color: #191c28;
+  border: 1px solid #ddd;
+  margin-bottom: 4px;
+  border-radius: 6px;
+}
+
+nav li a {
+  color: #000;
+  text-decoration: none;
+}
+
+nav li button {
+  background-color: #ff6961;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
