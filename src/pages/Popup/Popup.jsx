@@ -10,19 +10,18 @@ const Popup = () => {
   const [sortOrder, setSortOrder] = React.useState('asc');
 
   React.useEffect(() => {
-    // Load the URL list and sorting preferences from localStorage when the popup opens
+    // Load the URL list from localStorage when the popup opens
     const storedUrlList = localStorage.getItem('urlList');
-    const storedSortColumn = localStorage.getItem('sortColumn');
-    const storedSortOrder = localStorage.getItem('sortOrder');
-
     if (storedUrlList) {
       setUrlList(JSON.parse(storedUrlList));
     }
 
+    // Load the sorting preferences from localStorage
+    const storedSortColumn = localStorage.getItem('sortColumn');
+    const storedSortOrder = localStorage.getItem('sortOrder');
     if (storedSortColumn) {
       setSortColumn(storedSortColumn);
     }
-
     if (storedSortOrder) {
       setSortOrder(storedSortOrder);
     }
@@ -46,6 +45,12 @@ const Popup = () => {
       }
     });
   }, []);
+
+  React.useEffect(() => {
+    // Save the sorting preferences to localStorage whenever they change
+    localStorage.setItem('sortColumn', sortColumn);
+    localStorage.setItem('sortOrder', sortOrder);
+  }, [sortColumn, sortOrder]);
 
   const handleClick = () => {
     // Send a message to the content script to retrieve the URL and album information
@@ -77,9 +82,9 @@ const Popup = () => {
     });
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = (url) => {
     // Remove the URL from the URL list
-    const updatedUrlList = urlList.filter((_, i) => i !== index);
+    const updatedUrlList = urlList.filter((item) => item.url !== url);
     setUrlList(updatedUrlList);
 
     // Save the updated URL list to localStorage
@@ -105,21 +110,15 @@ const Popup = () => {
   };
 
   const handleSort = (column) => {
+    // If the same column is clicked, toggle the sort order
     if (column === sortColumn) {
-      setSortOrder((prevSortOrder) =>
-        prevSortOrder === 'asc' ? 'desc' : 'asc'
-      );
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
+      // Otherwise, set the new sort column and default to ascending order
       setSortColumn(column);
       setSortOrder('asc');
     }
   };
-
-  React.useEffect(() => {
-    // Save sorting preferences to local storage whenever they change
-    localStorage.setItem('sortColumn', sortColumn);
-    localStorage.setItem('sortOrder', sortOrder);
-  }, [sortColumn, sortOrder]);
 
   const getSortIcon = () => {
     if (sortOrder === 'asc') {
@@ -185,15 +184,15 @@ const Popup = () => {
           <nav>
             <ul>
               {/* Render the URL list with album information in the <ul> element */}
-              {sortedUrlList.map((data, index) => (
-                <li key={index}>
+              {sortedUrlList.map((data) => (
+                <li key={data.url}>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {`${data.albumName} - ${data.artist}`}
                   </a>
                   {data.rating && <span>Rating: {data.rating}</span>}{' '}
                   {/* Display the album rating if available */}
                   {/* Add a button to delete the URL */}
-                  <button onClick={() => handleDelete(index)}>X</button>
+                  <button onClick={() => handleDelete(data.url)}>X</button>
                 </li>
               ))}
             </ul>
