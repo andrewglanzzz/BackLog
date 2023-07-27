@@ -112,20 +112,27 @@ const Popup = () => {
   const handleSort = (column) => {
     // If the same column is clicked, toggle the sort order
     if (column === sortColumn) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder((prevSortOrder) =>
+        prevSortOrder === 'asc' ? 'desc' : 'asc'
+      );
     } else {
-      // Otherwise, set the new sort column and default to ascending order
+      // Otherwise, set the new sort column and default to descending order
       setSortColumn(column);
-      setSortOrder('asc');
+      if (column === 'rating') {
+        // For the rating column, set the default sort order to descending
+        setSortOrder('desc');
+      } else {
+        // For other columns, set the default sort order to ascending
+        setSortOrder('asc');
+      }
     }
   };
 
-  const getSortIcon = () => {
-    if (sortOrder === 'asc') {
-      return <span>&uarr;</span>; // Up arrow for ascending
-    } else {
-      return <span>&darr;</span>; // Down arrow for descending
+  const getSortIcon = (column) => {
+    if (sortColumn === column) {
+      return sortOrder === 'asc' ? <span>&darr;</span> : <span>&uarr;</span>;
     }
+    return null;
   };
 
   const sortedUrlList = React.useMemo(() => {
@@ -171,13 +178,13 @@ const Popup = () => {
             <ul>
               {/* Render the column headers with sorting icons */}
               <li onClick={() => handleSort('albumName')}>
-                Album Title {sortColumn === 'albumName' && getSortIcon()}
+                Album Title {getSortIcon('albumName')}
               </li>
               <li onClick={() => handleSort('artist')}>
-                Artist {sortColumn === 'artist' && getSortIcon()}
+                Artist {getSortIcon('artist')}
               </li>
               <li onClick={() => handleSort('rating')}>
-                Rating {sortColumn === 'rating' && getSortIcon()}
+                Rating {getSortIcon('rating')}
               </li>
             </ul>
           </nav>

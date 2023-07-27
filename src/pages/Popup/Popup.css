@@ -116,12 +116,6 @@ a:visited {
   color: white;
 }
 
-nav ul {
-  overflow-y: scroll;
-  list-style-type: none; /* Remove bullet point from the list items */
-  padding: 0; /* Remove default padding for <ul> element */
-}
-
 /* Column header styles */
 .column-headers ul {
   display: flex; /* Display the list items horizontally */
@@ -140,21 +134,16 @@ nav ul {
   border-bottom: 2px solid #ddd;
   user-select: none;
   -webkit-user-select: none;
-  display: inline-block; /* Display the list items in one line */
-  width: calc(
-    33.33% - 4px
-  ); /* Divide the <ul> width equally among the list items */
   box-sizing: border-box; /* Include padding and border in the width calculation */
+  border-left: 2px solid transparent; /* Add left border for all headers */
 }
 
 .column-headers li:first-child {
-  border-left: 2px solid #ddd;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
 .column-headers li:last-child {
-  border-right: 2px solid #ddd;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -165,7 +154,19 @@ nav ul {
 
 .column-headers li span {
   margin-left: 4px;
-  display: inline; /* Make the rating inline with the album and artist information */
+}
+
+/* Updated styles for URL list items */
+nav ul {
+  overflow-y: scroll;
+  list-style-type: none; /* Remove bullet point from the list items */
+  padding: 0; /* Remove default padding for <ul> element */
+}
+
+nav ul li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 nav li {
@@ -191,4 +192,5 @@ nav li button {
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
+  margin-left: 8px; /* Add some space between the buttons */
 }
