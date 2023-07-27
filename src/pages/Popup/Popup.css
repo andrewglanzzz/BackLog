@@ -1,7 +1,8 @@
-h1 {
-  color: white;
-  margin-top: -5px;
+.h1-backlog {
+  margin-top: -1px;
   text-align: center;
+  font-variant: small-caps;
+  color: white;
 }
 
 ::-webkit-scrollbar {

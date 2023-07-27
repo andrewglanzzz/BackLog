@@ -160,9 +160,7 @@ const Popup = () => {
 
   return (
     <div className="App">
-      <Sticky scrollElement=".scrollarea">
-        <h1 className="sticky-header">BackLog</h1>
-      </Sticky>
+      <h1 className="h1-backlog">BackLog</h1>
       {!showWarning ? (
         <>
           <button
