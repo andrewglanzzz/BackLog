@@ -203,7 +203,7 @@ const Popup = () => {
         const bValue = b.timestamp;
         return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       } else {
-        // Sort by other columns (albumName, artist, rating)
+        // Rest of the sorting logic remains the same
         const aValue = a[sortColumn];
         const bValue = b[sortColumn];
 
@@ -218,9 +218,10 @@ const Popup = () => {
             : 1;
         }
 
+        // Use String() to ensure that aValue and bValue are treated as strings for localeCompare
         return sortOrder === 'asc'
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
+          ? String(aValue).localeCompare(String(bValue))
+          : String(bValue).localeCompare(String(aValue));
       }
     });
 
