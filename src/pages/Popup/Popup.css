@@ -12,6 +12,11 @@
 .App {
   position: absolute;
   text-align: center;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
   height: 400px;
   padding: 10px;
   background-color: #191c28;
