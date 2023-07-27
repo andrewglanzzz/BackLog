@@ -256,8 +256,13 @@ const Popup = () => {
       ) : (
         <div className="warning-message">
           <p>Are you sure you want to clear your BackLog?</p>
-          <button onClick={handleConfirmClear}>Yes</button>
-          <button onClick={handleCancelClear}>Cancel</button>
+          <p>This action cannot be undone.</p>
+          <button className="button-backlog-clear" onClick={handleConfirmClear}>
+            Yes
+          </button>
+          <button className="button-backlog-cancel" onClick={handleCancelClear}>
+            Cancel
+          </button>
         </div>
       )}
     </div>

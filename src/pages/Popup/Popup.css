@@ -34,6 +34,11 @@
   color: white;
 }
 
+.warning-message {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .sticky-header {
   h1 {
     position: sticky;
@@ -80,6 +85,30 @@
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  background: #ff6961;
+  background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-backlog-cancel {
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
+  border-radius: 6px;
+  border: none;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+
+  -webkit-text-stroke: 0.1px black;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
   background: #65c5d7;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
@@ -103,11 +132,22 @@
   outline: 0;
 }
 
+.button-backlog-cancel:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
 .button-backlog-album:hover {
   background-color: #4d97a5;
 }
 
 .button-backlog-clear:hover {
+  background-color: #cc544d;
+}
+
+.button-backlog-cancel:hover {
   background-color: #4d97a5;
 }
 
