@@ -138,14 +138,14 @@ const Popup = () => {
       {!showWarning ? (
         <>
           <button
-            className="button-backlog"
+            className="button-backlog-album"
             onClick={handleClick}
             role="button"
           >
             BackLog this album!
           </button>
           <button
-            className="button-backlog"
+            className="button-backlog-clear"
             onClick={handleClear}
             role="button"
           >
