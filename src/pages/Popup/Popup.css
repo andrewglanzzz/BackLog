@@ -116,6 +116,12 @@ a:visited {
   color: white;
 }
 
+nav ul {
+  overflow-y: scroll;
+  list-style-type: none; /* Remove bullet point from the list items */
+  padding: 0; /* Remove default padding for <ul> element */
+}
+
 /* Column header styles */
 .column-headers ul {
   display: flex; /* Display the list items horizontally */
@@ -125,7 +131,7 @@ a:visited {
 }
 
 .column-headers li {
-  flex: 1; /* Distribute available space equally among all columns */
+  flex: 1;
   text-align: center;
   padding: 8px;
   cursor: pointer;
@@ -134,18 +140,23 @@ a:visited {
   border-bottom: 2px solid #ddd;
   user-select: none;
   -webkit-user-select: none;
+  display: inline-block; /* Display the list items in one line */
+  width: calc(
+    33.33% - 4px
+  ); /* Divide the <ul> width equally among the list items */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
 }
 
 .column-headers li:first-child {
   border-left: 2px solid #ddd;
-  border-top-left-radius: 8px; /* Rounded top-left corner for the first column header */
-  border-bottom-left-radius: 8px; /* Rounded bottom-left corner for the first column header */
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .column-headers li:last-child {
   border-right: 2px solid #ddd;
-  border-top-right-radius: 8px; /* Rounded top-right corner for the last column header */
-  border-bottom-right-radius: 8px; /* Rounded bottom-right corner for the last column header */
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .column-headers li:hover {
@@ -154,4 +165,5 @@ a:visited {
 
 .column-headers li span {
   margin-left: 4px;
+  display: inline; /* Make the rating inline with the album and artist information */
 }
