@@ -1,6 +1,7 @@
 import React from 'react';
 import './Popup.css';
 import Sticky from 'react-sticky-el';
+import Fuse from 'fuse.js';
 
 const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
@@ -8,6 +9,7 @@ const Popup = () => {
   const [showWarning, setShowWarning] = React.useState(false);
   const [sortColumn, setSortColumn] = React.useState('albumName');
   const [sortOrder, setSortOrder] = React.useState('asc');
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -32,16 +34,33 @@ const Popup = () => {
         const { url, albumName, artist, rating } = message;
         setActiveTabData({ url, albumName, artist, rating });
 
-        // Add the URL and album information to the URL list
-        setUrlList((prevUrlList) => {
-          const newUrlList = [
-            ...prevUrlList,
-            { url, albumName, artist, rating },
-          ];
+        // Check if the URL is already present in localStorage
+        const storedUrlList = JSON.parse(localStorage.getItem('urlList')) || [];
+        const existingItem = storedUrlList.find((item) => item.url === url);
+
+        if (!existingItem) {
+          // If the URL is not present, add it along with the current timestamp
+          const currentTime = new Date().getTime();
+          const newItem = {
+            url,
+            albumName,
+            artist,
+            rating,
+            timestamp: currentTime,
+          };
+          const newUrlList = [...storedUrlList, newItem];
+
           // Save the updated URL list to localStorage
           localStorage.setItem('urlList', JSON.stringify(newUrlList));
-          return newUrlList;
-        });
+          setUrlList(newUrlList);
+        } else {
+          // If the URL is already present, update the timestamp
+          existingItem.timestamp = new Date().getTime();
+
+          // Save the updated URL list to localStorage
+          localStorage.setItem('urlList', JSON.stringify(storedUrlList));
+          setUrlList(storedUrlList);
+        }
       }
     });
   }, []);
@@ -159,6 +178,19 @@ const Popup = () => {
     }
   };
 
+  const fuseOptions = {
+    keys: ['albumName', 'artist'], // The properties to search through
+    includeScore: true, // This will include the search score in the results
+    threshold: 0.2, // Set a lower threshold to include only higher-scoring results
+    distance: 100, // Set a lower distance to limit edit distance between query and results
+  };
+
+  const fuse = new Fuse(urlList, fuseOptions);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const sortedUrlList = React.useMemo(() => {
     // Clone the original URL list to avoid modifying it directly
     const sortedList = [...urlList];
@@ -195,6 +227,10 @@ const Popup = () => {
     return sortedList;
   }, [urlList, sortColumn, sortOrder]);
 
+  const displayList = searchQuery
+    ? fuse.search(searchQuery).map((result) => result.item)
+    : sortedUrlList;
+
   return (
     <div className="App">
       <h1 className="h1-backlog">BackLog</h1>
@@ -214,6 +250,12 @@ const Popup = () => {
           >
             Clear All
           </button>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="Search for albums or artists..."
+          />
           <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}
@@ -226,15 +268,15 @@ const Popup = () => {
               <li onClick={() => handleSort('rating')}>
                 Rating {getSortIcon('rating')}
               </li>
-              <li onClick={() => handleSort('dateAdded')}>
-                Added {getSortIcon('dateAdded')}
+              <li onClick={() => handleSort('timestamp')}>
+                Added {getSortIcon('timestamp')}
               </li>
             </ul>
           </nav>
           <nav>
             <ul>
               {/* Render the URL list with album information in the <ul> element */}
-              {sortedUrlList.map((data) => (
+              {displayList.map((data) => (
                 <li key={data.url}>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {`${data.albumName} - ${data.artist}`}
