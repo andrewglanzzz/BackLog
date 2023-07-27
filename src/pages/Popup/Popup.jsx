@@ -6,6 +6,8 @@ const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
   const [urlList, setUrlList] = React.useState([]);
   const [showWarning, setShowWarning] = React.useState(false);
+  const [sortColumn, setSortColumn] = React.useState('albumName');
+  const [sortOrder, setSortOrder] = React.useState('asc');
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -91,6 +93,43 @@ const Popup = () => {
     setShowWarning(false);
   };
 
+  const handleSort = (column) => {
+    // If the same column is clicked, toggle the sort order
+    if (column === sortColumn) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Otherwise, set the new sort column and default to ascending order
+      setSortColumn(column);
+      setSortOrder('asc');
+    }
+  };
+
+  const getSortIcon = () => {
+    if (sortOrder === 'asc') {
+      return <span>&uarr;</span>; // Up arrow for ascending
+    } else {
+      return <span>&darr;</span>; // Down arrow for descending
+    }
+  };
+
+  const sortedUrlList = React.useMemo(() => {
+    // Clone the original URL list to avoid modifying it directly
+    const sortedList = [...urlList];
+
+    // Sort the list based on the selected column and sort order
+    sortedList.sort((a, b) => {
+      const aValue = a[sortColumn];
+      const bValue = b[sortColumn];
+
+      // Sorting logic
+      return sortOrder === 'asc'
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    });
+
+    return sortedList;
+  }, [urlList, sortColumn, sortOrder]);
+
   return (
     <div className="App">
       <Sticky scrollElement=".scrollarea">
@@ -114,8 +153,22 @@ const Popup = () => {
           </button>
           <nav>
             <ul>
+              {/* Render the column headers with sorting icons */}
+              <li onClick={() => handleSort('albumName')}>
+                Album Title {sortColumn === 'albumName' && getSortIcon()}
+              </li>
+              <li onClick={() => handleSort('artist')}>
+                Artist {sortColumn === 'artist' && getSortIcon()}
+              </li>
+              <li onClick={() => handleSort('rating')}>
+                Album Rating {sortColumn === 'rating' && getSortIcon()}
+              </li>
+            </ul>
+          </nav>
+          <nav>
+            <ul>
               {/* Render the URL list with album information in the <ul> element */}
-              {urlList.map((data, index) => (
+              {sortedUrlList.map((data, index) => (
                 <li key={index}>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {`${data.albumName} - ${data.artist}`}
