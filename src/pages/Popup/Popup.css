@@ -117,16 +117,12 @@ a:visited {
   color: white;
 }
 
-/* Column header styles */
+/* Updated styles for column headers */
 .column-headers ul {
-  display: flex; /* Display the list items horizontally */
+  display: flex;
   padding: 0;
   margin: 0;
   list-style: none;
-  -webkit-text-stroke: 0.1px black;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .column-headers li {
@@ -134,18 +130,21 @@ a:visited {
   text-align: center;
   padding: 8px;
   cursor: pointer;
-  background-color: #65c5d7;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
+  border: 2px solid #ddd;
+  border-left: none;
   user-select: none;
   -webkit-user-select: none;
-  box-sizing: border-box; /* Include padding and border in the width calculation */
-  border-left: 2px solid transparent; /* Add left border for all headers */
+  background-color: #65c5d7;
+  color: white;
+  font-weight: bold;
+  border-radius: 0;
+  transition: background-color 0.3s ease;
 }
 
 .column-headers li:first-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  border-left: 2px solid #ddd;
 }
 
 .column-headers li:last-child {
@@ -157,24 +156,17 @@ a:visited {
   background-color: #4d97a5;
 }
 
-.column-headers li span {
-  margin-left: 4px;
-}
-
+/* Additional styles for the Recently Added header */
 .column-headers li.recentlyAdded {
-  /* Additional styles for the Recently Added header */
   background-color: #65c5d7;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
+  border: 2px solid #ddd;
 }
 
 .column-headers li.recentlyAdded:hover {
-  /* Additional styles for the Recently Added header on hover */
   background-color: #4d97a5;
 }
 
 .column-headers li.recentlyAdded span {
-  /* Additional styles for the arrow in the Recently Added header */
   margin-left: 4px;
 }
 
