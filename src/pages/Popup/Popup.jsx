@@ -1,6 +1,5 @@
 import React from 'react';
 import './Popup.css';
-import Sticky from 'react-sticky-el';
 import Fuse from 'fuse.js';
 
 const Popup = () => {
