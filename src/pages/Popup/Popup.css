@@ -246,6 +246,10 @@ a:visited {
 }
 
 /* Updated styles for URL list items */
+
+.wrappingText {
+}
+
 nav ul {
   overflow-y: scroll;
   list-style-type: none; /* Remove bullet point from the list items */
@@ -253,14 +257,14 @@ nav ul {
 }
 
 nav ul li {
-  display: flex; /* Display list items in a flex container */
-  align-items: center; /* Center contents vertically */
+  display: flex box; /* Use flexbox to center the content */
+  align-items: center; /* Center the content vertically */
   padding: 8px;
-  background-color: #14171f; /* Slightly darker than the app background */
+  background-color: #14171f;
   border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
-  transition: background-color 0.3s ease; /* Add smooth transition effect */
+  transition: background-color 0.3s ease;
 }
 
 nav ul li:hover {
@@ -282,8 +286,9 @@ nav ul li a {
   color: #000;
   text-decoration: none;
   font-weight: bold;
-  /* Add text-align center to the wrapping <div> */
-  text-align: center;
+  text-align: center; /* Center the text within the link */
+  display: flex; /* Use block display to ensure text centering */
+  width: 100%; /* Force the link to take the full width of its container */
 }
 
 nav li a {

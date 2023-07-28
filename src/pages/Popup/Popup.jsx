@@ -288,7 +288,7 @@ const Popup = () => {
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {`${data.albumName} — ${data.artist}`}
                   </a>
-                  {data.rating && <span>Rating: {data.rating}</span>}{' '}
+                  {data.rating && <span>Avg: {data.rating}</span>}{' '}
                   {/* Display the album rating if available */}
                   {/* Add a button to delete the URL */}
                   <button
