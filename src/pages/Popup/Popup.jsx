@@ -241,7 +241,7 @@ const Popup = () => {
     <div className="App">
       {/* Sticky header using CSS */}
       <h1 className="sticky-h1 h1-backlog">BackLog</h1>
-      {!showWarning ? (
+      {!showWarning ? ( // <-- Hide everything behind warning message
         <>
           <input
             className="input-search"
