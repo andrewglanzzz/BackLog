@@ -7,8 +7,8 @@ const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
   const [urlList, setUrlList] = React.useState([]);
   const [showWarning, setShowWarning] = React.useState(false);
-  const [sortColumn, setSortColumn] = React.useState('albumName');
-  const [sortOrder, setSortOrder] = React.useState('asc');
+  const [sortColumn, setSortColumn] = React.useState('recentlyAdded');
+  const [sortOrder, setSortOrder] = React.useState('desc');
   const [searchQuery, setSearchQuery] = React.useState('');
 
   React.useEffect(() => {
@@ -191,39 +191,44 @@ const Popup = () => {
     setSearchQuery(event.target.value);
   };
 
+  const customSort = (a, b) => {
+    if (sortColumn === 'recentlyAdded') {
+      // Sort by recently added (timestamp)
+      const aValue = a.timestamp;
+      const bValue = b.timestamp;
+      return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+    } else {
+      // Sort by other columns (albumName, artist, rating)
+      const aValue = a[sortColumn];
+      const bValue = b[sortColumn];
+
+      if (aValue === undefined || bValue === undefined) {
+        // If column value is undefined, move it to the end for ascending sort, or beginning for descending sort
+        return sortOrder === 'asc'
+          ? aValue === undefined
+            ? 1
+            : -1
+          : aValue === undefined
+          ? -1
+          : 1;
+      }
+
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortOrder === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+
+      return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+    }
+  };
+
   const sortedUrlList = React.useMemo(() => {
     // Clone the original URL list to avoid modifying it directly
     const sortedList = [...urlList];
 
     // Sort the list based on the selected column and sort order
-    sortedList.sort((a, b) => {
-      if (sortColumn === 'recentlyAdded') {
-        // Sort by recently added (timestamp)
-        const aValue = a.timestamp;
-        const bValue = b.timestamp;
-        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
-      } else {
-        // Rest of the sorting logic remains the same
-        const aValue = a[sortColumn];
-        const bValue = b[sortColumn];
-
-        if (aValue === undefined || bValue === undefined) {
-          // If column value is undefined, move it to the end for ascending sort, or beginning for descending sort
-          return sortOrder === 'asc'
-            ? aValue === undefined
-              ? 1
-              : -1
-            : aValue === undefined
-            ? -1
-            : 1;
-        }
-
-        // Use String() to ensure that aValue and bValue are treated as strings for localeCompare
-        return sortOrder === 'asc'
-          ? String(aValue).localeCompare(String(bValue))
-          : String(bValue).localeCompare(String(aValue));
-      }
-    });
+    sortedList.sort(customSort);
 
     return sortedList;
   }, [urlList, sortColumn, sortOrder]);
