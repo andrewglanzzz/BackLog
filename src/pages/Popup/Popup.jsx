@@ -239,7 +239,8 @@ const Popup = () => {
 
   return (
     <div className="App">
-      <h1 className="h1-backlog">BackLog</h1>
+      {/* Sticky header using CSS */}
+      <h1 className="sticky-h1 h1-backlog">BackLog</h1>
       <input
         className="input-search"
         type="text"

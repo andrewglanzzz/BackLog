@@ -1,8 +1,21 @@
 .h1-backlog {
-  margin-top: -1px;
   text-align: center;
   font-variant: small-caps;
   color: white;
+  margin-bottom: -10px;
+}
+
+/* Styles for the sticky header */
+.sticky-h1 {
+  position: sticky;
+  top: 0;
+  background-color: #191c28; /* Replace this with the background color you want for the sticky header */
+  z-index: 100; /* Ensure the header is above other content */
+
+  /* Adjust the height and margin to make the sticky header taller */
+  height: 40px; /* Change the height to your desired value */
+  margin: 0;
+  align-items: center;
 }
 
 ::-webkit-scrollbar {
@@ -10,6 +23,7 @@
 }
 
 .App {
+  margin-top: -10px;
   position: absolute;
   text-align: center;
   top: 0px;
