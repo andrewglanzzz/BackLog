@@ -281,7 +281,9 @@ nav li {
 nav ul li a {
   color: #000;
   text-decoration: none;
-  font-weight: bold; /* Add bold font-weight to the album name and artist name */
+  font-weight: bold;
+  /* Add text-align center to the wrapping <div> */
+  text-align: center;
 }
 
 nav li a {
