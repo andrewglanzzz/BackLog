@@ -3,8 +3,6 @@ import { printLine } from './modules/print';
 console.log('Content script works!');
 console.log('Must reload extension for modifications to take effect.');
 
-printLine("Using the 'printLine' function from the Print Module");
-
 // Function to extract album information from the page
 function extractAlbumInfo() {
   const titleElement = document.querySelector('title');
@@ -18,13 +16,27 @@ function extractAlbumInfo() {
 
   // Use document.querySelector to select the <span> element with the class "avg_rating"
   const ratingElement = document.querySelector('.avg_rating');
-  const rating = ratingElement.textContent.trim();
-  console.log(rating);
+  const rating = ratingElement ? ratingElement.textContent.trim() : '';
+
+  // Use document.querySelectorAll to select all meta tags
+  const metaTags = document.querySelectorAll('meta');
+
+  // Loop through the meta tags to find the one with itemprop="genre"
+  let genre = '';
+  for (const metaTag of metaTags) {
+    console.log('scanning for genre...');
+    if (metaTag.getAttribute('itemprop') === 'genre') {
+      genre = metaTag.getAttribute('content').trim();
+      console.log(genre);
+      break; // Stop the loop once we find the genre
+    }
+  }
 
   return {
     artist: artist || '',
     albumName: albumName || '',
     rating: rating || '',
+    genre: genre || '', // Add the genre to the return object
   };
 }
 
@@ -35,15 +47,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const url = window.location.href;
 
     // Extract album information from RateYourMusic
-    const { artist, albumName, rating } = extractAlbumInfo();
+    const { artist, albumName, rating, genre } = extractAlbumInfo(); // Include the genre in the extracted information
 
-    // Send the URL, album name, artist, and rating back to the popup
+    // Send the URL, album name, artist, rating, and genre back to the popup
     chrome.runtime.sendMessage({
       action: 'sendURL',
       url: url,
       albumName: albumName,
       artist: artist,
       rating: rating,
+      genre: genre, // Include the genre in the data sent back to the popup
     });
   }
 });
