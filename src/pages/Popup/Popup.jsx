@@ -241,15 +241,15 @@ const Popup = () => {
     <div className="App">
       {/* Sticky header using CSS */}
       <h1 className="sticky-h1 h1-backlog">BackLog</h1>
-      <input
-        className="input-search"
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Search BackLog..."
-      />
       {!showWarning ? (
         <>
+          <input
+            className="input-search"
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="Search BackLog..."
+          />
           <button
             className="button-backlog-album"
             onClick={handleClick}

@@ -51,6 +51,7 @@
 .warning-message {
   font-weight: bold;
   font-size: 20px;
+  z-index: 200;
 }
 
 .sticky-header {
