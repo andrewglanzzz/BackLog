@@ -240,6 +240,13 @@ const Popup = () => {
   return (
     <div className="App">
       <h1 className="h1-backlog">BackLog</h1>
+      <input
+        className="input-search"
+        type="text"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        placeholder="Search BackLog..."
+      />
       {!showWarning ? (
         <>
           <button
@@ -256,13 +263,6 @@ const Popup = () => {
           >
             Clear All
           </button>
-          <input
-            className="input-search"
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search BackLog..."
-          />
           <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}
