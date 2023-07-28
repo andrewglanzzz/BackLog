@@ -30,8 +30,8 @@ const Popup = () => {
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
-        const { url, albumName, artist, rating } = message;
-        setActiveTabData({ url, albumName, artist, rating });
+        const { url, albumName, artist, genre, rating } = message;
+        setActiveTabData({ url, albumName, artist, genre, rating });
 
         // Check if the URL is already present in localStorage
         const storedUrlList = JSON.parse(localStorage.getItem('urlList')) || [];
@@ -44,6 +44,7 @@ const Popup = () => {
             url,
             albumName,
             artist,
+            genre,
             rating,
             timestamp: currentTime,
           };
@@ -81,8 +82,8 @@ const Popup = () => {
         chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
           // Handle the response from the content script
           if (response) {
-            const { url, albumName, artist, rating } = response;
-            setActiveTabData({ url, albumName, artist, rating });
+            const { url, albumName, artist, genre, rating } = response;
+            setActiveTabData({ url, albumName, artist, genre, rating });
 
             // Check if the URL is already present in localStorage
             const storedUrlList =
@@ -96,6 +97,7 @@ const Popup = () => {
                 url,
                 albumName,
                 artist,
+                genre,
                 rating,
                 timestamp: currentTime,
               };
@@ -289,7 +291,7 @@ const Popup = () => {
                     {`${data.albumName} — ${data.artist}`}
                   </a>
                   {/* Include the genre in the list item */}
-                  {data.genre && <span>Genre: {data.genre}</span>}{' '}
+                  {data.genre && <span>{data.genre}</span>}{' '}
                   {/* Display the album rating if available */}
                   {data.rating && <span>Avg: {data.rating}</span>}{' '}
                   {/* Add a button to delete the URL */}
