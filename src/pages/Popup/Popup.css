@@ -246,10 +246,6 @@ a:visited {
 }
 
 /* Updated styles for URL list items */
-
-.wrappingText {
-}
-
 nav ul {
   overflow-y: scroll;
   list-style-type: none; /* Remove bullet point from the list items */
