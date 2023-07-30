@@ -271,9 +271,11 @@ nav ul li:hover {
   background-color: #2c303d; /* Change background color on hover */
 }
 
+/* Column headers are affected by this as well */
 nav li {
   display: flex; /* Display list items in a flex container */
   align-items: center; /* Center contents vertically */
+  align-text: center;
   justify-content: space-between; /* Spread contents evenly in the available space */
   padding: 8px;
   background-color: #191c28;
