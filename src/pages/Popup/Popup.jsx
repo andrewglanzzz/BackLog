@@ -180,7 +180,7 @@ const Popup = () => {
   };
 
   const fuseOptions = {
-    keys: ['albumName', 'artist'], // The properties to search through
+    keys: ['albumName', 'artist', 'genre'], // The properties to search through
     includeScore: true, // This will include the search score in the results
     threshold: 0.2, // Set a lower threshold to include only higher-scoring results
     distance: 100, // Set a lower distance to limit edit distance between query and results
