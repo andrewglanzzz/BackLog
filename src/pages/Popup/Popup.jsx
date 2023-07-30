@@ -274,6 +274,9 @@ const Popup = () => {
               <li onClick={() => handleSort('artist')}>
                 Artist {getSortIcon('artist')}
               </li>
+              <li onClick={() => handleSort('genre')}>
+                Genre {getSortIcon('genre')}
+              </li>
               <li onClick={() => handleSort('rating')}>
                 Rating {getSortIcon('rating')}
               </li>
