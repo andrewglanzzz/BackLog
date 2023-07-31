@@ -291,11 +291,17 @@ const Popup = () => {
               {displayList.map((data) => (
                 <li key={data.url}>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
-                    {`${data.albumName} — ${data.artist}`}
+                    {
+                      <span className="paddedSpan">
+                        {data.albumName} — {data.artist}
+                      </span>
+                    }
                   </a>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {/* Include the genre in the list item */}
-                    {data.genre && <span>{data.genre}</span>}{' '}
+                    {data.genre && (
+                      <span className="paddedSpan">{data.genre}</span>
+                    )}{' '}
                   </a>
                   {/* Display the album rating if available */}
                   {data.rating && <span>Avg: {data.rating}</span>}{' '}

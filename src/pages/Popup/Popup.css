@@ -305,3 +305,8 @@ nav li button {
   cursor: pointer;
   margin-left: 8px; /* Add some space between the buttons */
 }
+
+.paddedSpan {
+  text-align: left;
+  padding: 4px;
+}
