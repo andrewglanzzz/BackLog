@@ -298,7 +298,12 @@ const Popup = () => {
                       </span>
                     }
                   </a>
-                  <a href={data.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className="tallGenre"
+                    href={data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {/* Include the genre in the list item */}
                     {data.genre && (
                       <span className="paddedSpan">{data.genre}</span>

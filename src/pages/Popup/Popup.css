@@ -181,7 +181,6 @@
 
 /* Using this for debugging, figuring out clickarea. */
 a {
-  border: 1px solid red;
 }
 /* */
 
@@ -318,8 +317,20 @@ nav li button {
 .paddedSpan {
   text-align: left;
   padding: 4px;
+  display: block;
 }
 
 .italicsSpan {
   font-style: italic;
+}
+
+.tallGenre {
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  justify-content: left;
+  align-items: left;
+  display: block;
 }
