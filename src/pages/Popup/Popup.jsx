@@ -11,6 +11,7 @@ const Popup = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [isBackLogged, setIsBackLogged] = React.useState(false);
   const [initialUrlListLength, setInitialUrlListLength] = React.useState(0);
+  const [displayList, setDisplayList] = React.useState([]);
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -127,6 +128,7 @@ const Popup = () => {
               // Save the updated URL list to localStorage
               localStorage.setItem('urlList', JSON.stringify(newUrlList));
               setUrlList(newUrlList);
+
               // Set "BackLogged" state to true if the URL list got larger
               if (newUrlList.length > initialUrlListLength) {
                 setIsBackLogged(true);
@@ -211,12 +213,6 @@ const Popup = () => {
     distance: 100, // Set a lower distance to limit edit distance between query and results
   };
 
-  const fuse = new Fuse(urlList, fuseOptions);
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   const customSort = (a, b) => {
     if (sortColumn === 'recentlyAdded') {
       // Sort by recently added (timestamp)
@@ -249,6 +245,35 @@ const Popup = () => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+
+    // Sort and update the displayList based on the search query
+    const clonedList = [...urlList];
+    const fuse = new Fuse(clonedList, fuseOptions);
+    const searchResults = event.target.value
+      ? fuse.search(event.target.value).map((result) => result.item)
+      : urlList;
+    const sortedList = [...searchResults];
+    sortedList.sort(customSort);
+    setDisplayList(sortedList);
+  };
+
+  React.useEffect(() => {
+    // Save the sorting preferences to localStorage whenever they change
+    localStorage.setItem('sortColumn', sortColumn);
+    localStorage.setItem('sortOrder', sortOrder);
+    // Sort and update the displayList based on the search query
+    const clonedList = [...urlList];
+    const fuse = new Fuse(clonedList, fuseOptions);
+    const searchResults = searchQuery
+      ? fuse.search(searchQuery).map((result) => result.item)
+      : urlList;
+    const sortedList = [...searchResults];
+    sortedList.sort(customSort);
+    setDisplayList(sortedList);
+  }, [sortColumn, sortOrder, urlList, searchQuery]);
+
   const sortedUrlList = React.useMemo(() => {
     // Clone the original URL list to avoid modifying it directly
     const sortedList = [...urlList];
@@ -258,10 +283,6 @@ const Popup = () => {
 
     return sortedList;
   }, [urlList, sortColumn, sortOrder]);
-
-  const displayList = searchQuery
-    ? fuse.search(searchQuery).map((result) => result.item)
-    : sortedUrlList;
 
   return (
     <div className="App">
