@@ -179,11 +179,6 @@
   font-size: 12px;
 }
 
-/* Using this for debugging, figuring out clickarea. */
-a {
-}
-/* */
-
 a:link {
   color: white;
   height: 100%;
