@@ -9,12 +9,15 @@ const Popup = () => {
   const [sortColumn, setSortColumn] = React.useState('recentlyAdded');
   const [sortOrder, setSortOrder] = React.useState('desc');
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [isBackLogged, setIsBackLogged] = React.useState(false);
+  const [initialUrlListLength, setInitialUrlListLength] = React.useState(0);
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
     const storedUrlList = localStorage.getItem('urlList');
     if (storedUrlList) {
       setUrlList(JSON.parse(storedUrlList));
+      setInitialUrlListLength(JSON.parse(storedUrlList).length);
     }
 
     // Load the sorting preferences from localStorage
@@ -53,6 +56,10 @@ const Popup = () => {
           // Save the updated URL list to localStorage
           localStorage.setItem('urlList', JSON.stringify(newUrlList));
           setUrlList(newUrlList);
+          // Set "BackLogged" state to true if the URL list got larger
+          if (newUrlList.length > initialUrlListLength) {
+            setIsBackLogged(true);
+          }
         } else {
           // If the URL is already present, update the timestamp
           existingItem.timestamp = new Date().getTime();
@@ -63,13 +70,27 @@ const Popup = () => {
         }
       }
     });
-  }, []);
+  }, [initialUrlListLength]);
 
   React.useEffect(() => {
     // Save the sorting preferences to localStorage whenever they change
     localStorage.setItem('sortColumn', sortColumn);
     localStorage.setItem('sortOrder', sortOrder);
   }, [sortColumn, sortOrder]);
+
+  React.useEffect(() => {
+    // Reset the "BackLogged" state after 5 seconds
+    if (isBackLogged) {
+      const timeoutId = setTimeout(() => {
+        setIsBackLogged(false);
+      }, 5000);
+
+      return () => {
+        // Clear the timeout to prevent it from triggering after component unmounts
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [isBackLogged]);
 
   const handleClick = () => {
     // Send a message to the content script to retrieve the URL and album information
@@ -106,6 +127,10 @@ const Popup = () => {
               // Save the updated URL list to localStorage
               localStorage.setItem('urlList', JSON.stringify(newUrlList));
               setUrlList(newUrlList);
+              // Set "BackLogged" state to true if the URL list got larger
+              if (newUrlList.length > initialUrlListLength) {
+                setIsBackLogged(true);
+              }
             } else {
               // If the URL is already present, update the timestamp
               existingItem.timestamp = new Date().getTime();
@@ -241,7 +266,11 @@ const Popup = () => {
   return (
     <div className="App">
       {/* Sticky header using CSS */}
-      <h1 className="sticky-h1 h1-backlog">BackLog</h1>
+      <h1
+        className={`sticky-h1 h1-backlog ${isBackLogged ? 'backlogged' : ''}`}
+      >
+        {isBackLogged ? 'BackLogged!' : 'BackLog'}
+      </h1>
       {!showWarning ? ( // <-- Hide everything behind warning message
         <>
           <input
@@ -294,7 +323,7 @@ const Popup = () => {
                     {
                       <span className="paddedSpan">
                         {data.albumName}{' '}
-                        <span className="removeTextDecoration">-</span>{' '}
+                        <span className="removeTextDecoration">—</span>{' '}
                         <span className="italicsSpan">{data.artist}</span>
                       </span>
                     }
