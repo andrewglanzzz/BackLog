@@ -288,6 +288,7 @@ nav ul li a {
   text-align: center; /* Center the text within the link */
   display: flex; /* Use block display to ensure text centering */
   width: 100%; /* Force the link to take the full width of its container */
+  padding: 5px;
 }
 
 nav li a {
