@@ -334,3 +334,7 @@ nav li button {
   align-items: left;
   display: block;
 }
+
+.removeTextDecoration {
+  font-weight: normal;
+}

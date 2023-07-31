@@ -293,7 +293,8 @@ const Popup = () => {
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {
                       <span className="paddedSpan">
-                        {data.albumName} —{' '}
+                        {data.albumName}{' '}
+                        <span className="removeTextDecoration">-</span>{' '}
                         <span className="italicsSpan">{data.artist}</span>
                       </span>
                     }
