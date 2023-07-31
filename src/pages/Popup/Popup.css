@@ -318,6 +318,7 @@ nav li button {
   text-align: left;
   padding: 4px;
   display: block;
+  overflow-wrap: anywhere;
 }
 
 .italicsSpan {
