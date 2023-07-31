@@ -179,6 +179,12 @@
   font-size: 12px;
 }
 
+/* Using this for debugging, figuring out clickarea. */
+a {
+  border: 1px solid red;
+}
+/* */
+
 a:link {
   color: white;
   height: 100%;
@@ -286,9 +292,12 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   text-align: center; /* Center the text within the link */
-  display: flex; /* Use block display to ensure text centering */
+  display: block; /* Use block display to ensure text centering */
   width: 100%; /* Force the link to take the full width of its container */
-  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 nav li a {
@@ -309,4 +318,8 @@ nav li button {
 .paddedSpan {
   text-align: left;
   padding: 4px;
+}
+
+.italicsSpan {
+  font-style: italic;
 }
