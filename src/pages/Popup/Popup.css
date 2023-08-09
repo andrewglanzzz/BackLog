@@ -137,27 +137,6 @@ html {
   touch-action: manipulation;
 }
 
-.button-backlog-album:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
-.button-backlog-clear:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
-.button-backlog-cancel:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
 .button-backlog-album:hover {
   background-color: #005dbf;
 }
@@ -232,14 +211,9 @@ a:visited {
 }
 
 .column-headers li:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-left: 2px solid #ddd;
 }
 
 .column-headers li:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
 }
 
 .column-headers li:hover {
@@ -248,7 +222,6 @@ a:visited {
 
 /* Additional styles for the Recently Added header */
 .column-headers li.recentlyAdded {
-  border: 2px solid #ddd;
 }
 
 .column-headers li.recentlyAdded:hover {
@@ -271,7 +244,6 @@ nav ul li {
   align-items: center; /* Center the content vertically */
   padding: 8px;
   background-color: #14171f;
-  border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
@@ -289,7 +261,6 @@ nav li {
   justify-content: space-between; /* Spread contents evenly in the available space */
   padding: 8px;
   background-color: #191c28;
-  border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
 }
