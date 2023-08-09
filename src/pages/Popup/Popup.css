@@ -204,7 +204,6 @@ a:visited {
 
 /* Updated styles for column headers */
 .column-headers ul {
-  -webkit-text-stroke: 0.1px black;
   font-size: 14px;
   display: flex;
   padding: 0;
