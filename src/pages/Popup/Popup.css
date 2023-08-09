@@ -167,9 +167,10 @@ html {
   margin-right: auto;
   margin-bottom: 10px;
   border-radius: 20px;
+  border: none;
   font-size: 16px;
   color: white;
-  background-color: #191c28;
+  background-color: #14171f;
   outline: none;
   height: 15px;
   width: 400px;
