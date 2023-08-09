@@ -1,6 +1,7 @@
 import React from 'react';
 import './Popup.css';
 import Fuse from 'fuse.js';
+import 'font-awesome/css/font-awesome.min.css';
 
 const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
@@ -297,9 +298,10 @@ const Popup = () => {
           <input
             className="input-search"
             type="text"
+            styles="font-family: Arial, FontAwesome"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search..."
+            placeholder="&#xf002; Search..."
           />
           <button
             className="button-backlog-album"
