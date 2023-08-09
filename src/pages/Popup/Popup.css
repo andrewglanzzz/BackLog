@@ -14,11 +14,11 @@ html {
 .sticky-h1 {
   position: sticky;
   top: 0;
-  background-color: #191c28; /* Replace this with the background color you want for the sticky header */
+  background-color: #191c28;
   z-index: 100; /* Ensure the header is above other content */
 
   /* Adjust the height and margin to make the sticky header taller */
-  height: 40px; /* Change the height to your desired value */
+  height: 40px;
   margin: 0;
   align-items: center;
 }
@@ -152,6 +152,7 @@ html {
 .button-delete {
   height: 30px;
   background: #790000;
+  margin-left: -130px;
 }
 
 .button-delete:hover {
