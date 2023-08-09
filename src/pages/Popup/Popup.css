@@ -1,3 +1,8 @@
+html {
+  height: 750px; /* max: 750px */
+  width: 550px; /* max: 1000px */
+}
+
 .h1-backlog {
   text-align: center;
   font-variant: small-caps;
@@ -31,7 +36,8 @@
   left: 0px;
   right: 0px;
 
-  height: 600px;
+  height: 750px;
+  width: 530px;
   padding: 10px;
   background-color: #191c28;
   color: white;
