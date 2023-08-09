@@ -297,14 +297,6 @@ const Popup = () => {
       </h1>
       {!showWarning ? ( // <-- Hide everything behind warning message
         <>
-          <input
-            className="input-search"
-            type="text"
-            styles="font-family: Arial, FontAwesome"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="&#xf002; Search..."
-          />
           <button
             className="button-backlog-album"
             onClick={handleClick}
@@ -319,6 +311,14 @@ const Popup = () => {
           >
             Clear All
           </button>
+          <input
+            className="input-search"
+            type="text"
+            styles="font-family: Arial, FontAwesome"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="&#xf002; Search..."
+          />
           <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}
@@ -354,7 +354,7 @@ const Popup = () => {
                     }
                   </a>
                   <a
-                    className="tallGenre"
+                    className="tall"
                     href={data.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -364,8 +364,19 @@ const Popup = () => {
                       <span className="paddedSpan">{data.genre}</span>
                     )}{' '}
                   </a>
-                  {/* Display the album rating if available */}
-                  {data.rating && <span>Avg: {data.rating}</span>}{' '}
+                  <a
+                    className="tall"
+                    href={data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {/* Display the album rating if available */}
+                    {data.rating && (
+                      <span className="removeTextDecoration">
+                        Avg: {data.rating}
+                      </span>
+                    )}{' '}
+                  </a>
                   {/* Add a button to delete the URL */}
                   <button
                     className="button-delete"
