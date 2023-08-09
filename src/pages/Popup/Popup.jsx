@@ -1,6 +1,8 @@
 import React from 'react';
 import './Popup.css';
 import Fuse from 'fuse.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
 
 const Popup = () => {
@@ -369,7 +371,7 @@ const Popup = () => {
                     className="button-delete"
                     onClick={() => handleDelete(data.url)}
                   >
-                    X
+                    <FontAwesomeIcon icon={faTrashCan} />
                   </button>
                 </li>
               ))}
