@@ -299,7 +299,7 @@ const Popup = () => {
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search BackLog..."
+            placeholder="Search..."
           />
           <button
             className="button-backlog-album"
