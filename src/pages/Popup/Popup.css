@@ -76,13 +76,13 @@ html {
   border: none;
   margin-left: auto;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
+
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  background: #65c5d7;
+  background: #006ed1;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
@@ -100,7 +100,6 @@ html {
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
   color: #fff;
@@ -177,8 +176,9 @@ html {
 }
 
 .input-search {
-  align-items: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 6px 14px;
   margin-bottom: 10px;
   border: 2px solid #ddd;
@@ -221,7 +221,7 @@ a:visited {
   border-left: none;
   user-select: none;
   -webkit-user-select: none;
-  background-color: #65c5d7;
+  background-color: #006ed1;
   color: white;
   font-weight: bold;
   border-radius: 0;
