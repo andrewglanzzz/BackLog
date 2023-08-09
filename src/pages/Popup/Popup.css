@@ -237,18 +237,6 @@ a:visited {
   background-color: #005dbf;
 }
 
-/* Additional styles for the Recently Added header */
-.column-headers li.recentlyAdded {
-}
-
-.column-headers li.recentlyAdded:hover {
-  background-color: #4d97a5;
-}
-
-.column-headers li.recentlyAdded span {
-  margin-left: 4px;
-}
-
 /* Updated styles for URL list items */
 nav ul {
   overflow-y: scroll;
