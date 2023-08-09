@@ -2,6 +2,7 @@ import React from 'react';
 import './Popup.css';
 import Fuse from 'fuse.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -311,14 +312,18 @@ const Popup = () => {
           >
             Clear All
           </button>
-          <input
-            className="input-search"
-            type="text"
-            styles="font-family: Arial, FontAwesome"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="&#xf002; Search..."
-          />
+          <div className="search-container">
+            <input
+              className="input-search"
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search..."
+            />
+            <div className="search-icon">
+              <FontAwesomeIcon icon={faSearch} />
+            </div>
+          </div>
           <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}

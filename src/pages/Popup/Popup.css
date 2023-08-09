@@ -176,6 +176,15 @@ html {
   height: 15px;
   width: 400px;
   font-size: 12px;
+  padding-left: 30px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  margin-top: -31.5px;
+  margin-left: 52px;
+  pointer-events: none;
 }
 
 a:link {
