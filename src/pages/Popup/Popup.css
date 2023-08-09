@@ -172,6 +172,11 @@ html {
 
 .button-delete {
   height: 30px;
+  background: #790000;
+}
+
+.button-delete:hover {
+  background-color: #650000;
 }
 
 .input-search {
