@@ -31,11 +31,20 @@ function extractAlbumInfo() {
     }
   }
 
+  // Use document.querySelector to dynamically scrape album art.
+  const albumShortcut = document.querySelector('.album_shortcut');
+  const shortcutValue = albumShortcut ? albumShortcut.value.trim() : '';
+
+  // Remove "Album" from the output and keep only the number
+  const albumNumber = shortcutValue.replace('Album', '').slice(1, -1);
+
+  console.log('album number: ' + albumNumber);
+
   return {
     artist: artist || '',
     albumName: albumName || '',
     rating: rating || '',
-    genre: genre || '', // Add the genre to the return object
+    genre: genre || '',
   };
 }
 
