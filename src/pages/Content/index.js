@@ -40,6 +40,33 @@ function extractAlbumInfo() {
 
   console.log('album number: ' + albumNumber);
 
+  // Construct the selector for cover art using the album number
+  const coverArtSelector = `.coverart_${albumNumber}`; // Adjust class name format
+  const coverArtDivSelector = document.querySelector(coverArtSelector);
+
+  const coverArtDiv = document.querySelector(`.coverart_${albumNumber}`);
+
+  if (coverArtDiv) {
+    const imgElement = coverArtDiv.querySelector('img');
+    const srcsetValue = imgElement.getAttribute('srcset');
+
+    if (srcsetValue) {
+      // Extract the URL from srcset
+      const imageUrl = srcsetValue.split(', ')[0].split(' ')[0];
+      console.log('Image URL: ' + imageUrl);
+
+      // Now you can create an image element and set its src attribute
+      const image = new Image();
+      image.src = imageUrl;
+      // Append the image to a container element
+      // For example: document.body.appendChild(image);
+    } else {
+      console.log('No srcset attribute found');
+    }
+  } else {
+    console.log(`Cover art element for album ${albumNumber} not found`);
+  }
+
   return {
     artist: artist || '',
     albumName: albumName || '',
