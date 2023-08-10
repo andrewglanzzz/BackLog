@@ -24,7 +24,6 @@ function extractAlbumInfo() {
   // Loop through the meta tags to find the one with itemprop="genre"
   let genre = '';
   for (const metaTag of metaTags) {
-    console.log('scanning for genre...');
     if (metaTag.getAttribute('itemprop') === 'genre') {
       genre = metaTag.getAttribute('content').trim();
       break; // Stop the loop once we find the genre
