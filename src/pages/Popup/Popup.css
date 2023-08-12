@@ -198,7 +198,6 @@ a:visited {
   padding: 0;
   margin: 0;
   list-style: none;
-  margin-bottom: 0px;
   border-radius: 6px;
 }
 
@@ -231,12 +230,15 @@ a:visited {
 }
 
 /* Updated styles for URL list items */
+
+/* This defines the list itself */
 nav ul {
   overflow-y: scroll;
   list-style-type: none; /* Remove bullet point from the list items */
   padding: 0; /* Remove default padding for <ul> element */
 }
 
+/* This chunk determines the borders and background for each list item. */
 nav ul li {
   display: flex box; /* Use flexbox to center the content */
   align-items: center; /* Center the content vertically */
@@ -247,6 +249,7 @@ nav ul li {
   transition: background-color 0.3s ease;
 }
 
+/* This defines the hover for the list item. Switches it to white. */
 nav ul li:hover {
   background-color: #2c303d; /* Change background color on hover */
 }
@@ -267,7 +270,7 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   text-align: center; /* Center the text within the link */
-  display: block; /* Use block display to ensure text centering */
+  display: block;
   width: 100%; /* Force the link to take the full width of its container */
   padding-top: 10px;
   padding-bottom: 10px;
