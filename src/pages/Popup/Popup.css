@@ -60,13 +60,6 @@ html {
   z-index: 200;
 }
 
-.sticky-header {
-  h1 {
-    position: sticky;
-    top: 0;
-  }
-}
-
 .button-backlog-album {
   font-size: 14px;
   align-items: center;
@@ -200,6 +193,7 @@ a:visited {
 
 /* Updated styles for column headers */
 .column-headers ul {
+  text-align: center;
   font-size: 14px;
   display: flex;
   padding: 0;
@@ -247,7 +241,7 @@ nav ul {
 nav ul li {
   display: flex box; /* Use flexbox to center the content */
   align-items: center; /* Center the content vertically */
-  padding: 8px;
+  padding: 6px;
   background-color: #14171f;
   margin-bottom: 4px;
   border-radius: 6px;
@@ -262,7 +256,6 @@ nav ul li:hover {
 nav li {
   display: flex; /* Display list items in a flex container */
   align-items: center; /* Center contents vertically */
-  align-text: center;
   justify-content: space-between; /* Spread contents evenly in the available space */
   padding: 8px;
   background-color: #191c28;
