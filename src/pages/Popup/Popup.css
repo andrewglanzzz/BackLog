@@ -69,7 +69,6 @@ html {
   border: none;
   margin-left: auto;
   margin-bottom: 10px;
-
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
   color: #fff;
