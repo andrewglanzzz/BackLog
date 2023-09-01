@@ -257,6 +257,7 @@ nav ul li:hover {
 /* Column headers are affected by this as well */
 nav li {
   display: flex; /* Display list items in a flex container */
+  flex: 1 30px;
   align-items: center; /* Center contents vertically */
   justify-content: space-between; /* Spread contents evenly in the available space */
   padding: 8px;
@@ -267,13 +268,10 @@ nav li {
 
 nav ul li a {
   color: #000;
-  text-decoration: none;
   font-weight: bold;
-  text-align: center; /* Center the text within the link */
-  display: block;
+  content-align: left; /* Center the text within the link */
+  display: block; /* Makes click area larger */
   width: 100%; /* Force the link to take the full width of its container */
-  padding-top: 10px;
-  padding-bottom: 10px;
   padding-left: 3px;
   padding-right: 3px;
 }
@@ -292,11 +290,13 @@ nav li button {
   cursor: pointer;
   margin-left: 8px; /* Add some space between the buttons */
 }
+img {
+  width: 75px;
+}
 
 .paddedSpan {
   text-align: left;
   padding: 4px;
-  display: block;
   overflow-wrap: anywhere;
 }
 
@@ -306,13 +306,12 @@ nav li button {
 
 .tall {
   text-align: left;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 100%;
   height: 100%;
   justify-content: left;
   align-items: left;
-  display: block;
 }
 
 .removeTextDecoration {

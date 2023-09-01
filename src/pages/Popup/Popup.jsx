@@ -359,8 +359,15 @@ const Popup = () => {
               {/* Render the URL list with album information in the <ul> element */}
               {displayList.map((data) => (
                 <li key={data.url}>
-                  <img src={data.imageUrl} width="75"></img>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
+                    <img src={data.imageUrl} width="75"></img>
+                  </a>
+                  <a
+                    className="tall"
+                    href={data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {
                       <span className="paddedSpan">
                         {data.albumName}{' '}
