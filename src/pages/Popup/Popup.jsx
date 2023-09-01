@@ -355,7 +355,7 @@ const Popup = () => {
               {/* Render the URL list with album information in the <ul> element */}
               {displayList.map((data) => (
                 <li key={data.url}>
-                  <img src="https://placehold.co/100x100" width="100"></img>
+                  <img src="https://placehold.co/75x75" width="75"></img>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {
                       <span className="paddedSpan">
