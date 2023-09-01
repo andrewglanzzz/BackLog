@@ -233,6 +233,9 @@ a:visited {
 
 /* This defines the list itself */
 nav ul {
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   overflow-y: scroll;
   list-style-type: none; /* Remove bullet point from the list items */
   padding: 0; /* Remove default padding for <ul> element */
@@ -240,7 +243,6 @@ nav ul {
 
 /* This chunk determines the borders and background for each list item. */
 nav ul li {
-  display: flex box; /* Use flexbox to center the content */
   align-items: center; /* Center the content vertically */
   padding: 6px;
   background-color: #14171f;
@@ -290,6 +292,7 @@ nav li button {
   cursor: pointer;
   margin-left: 8px; /* Add some space between the buttons */
 }
+
 img {
   width: 75px;
 }

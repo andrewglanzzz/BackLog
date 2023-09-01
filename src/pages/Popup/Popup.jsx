@@ -355,61 +355,69 @@ const Popup = () => {
             </ul>
           </nav>
           <nav>
-            <ul>
-              {/* Render the URL list with album information in the <ul> element */}
-              {displayList.map((data) => (
-                <li key={data.url}>
-                  <a href={data.url} target="_blank" rel="noopener noreferrer">
-                    <img src={data.imageUrl} width="75"></img>
-                  </a>
-                  <a
-                    className="tall"
-                    href={data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {
-                      <span className="paddedSpan">
-                        {data.albumName}{' '}
-                        <span className="removeTextDecoration">—</span>{' '}
-                        <span className="italicsSpan">{data.artist}</span>
-                      </span>
-                    }
-                  </a>
-                  <a
-                    className="tall"
-                    href={data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* Include the genre in the list item */}
-                    {data.genre && (
-                      <span className="paddedSpan">{data.genre}</span>
-                    )}{' '}
-                  </a>
-                  <a
-                    className="tall"
-                    href={data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* Display the album rating if available */}
-                    {data.rating && (
-                      <span className="removeTextDecoration">
-                        Avg: {data.rating}
-                      </span>
-                    )}{' '}
-                  </a>
-                  {/* Add a button to delete the URL */}
-                  <button
-                    className="button-delete"
-                    onClick={() => handleDelete(data.url)}
-                  >
-                    <FontAwesomeIcon icon={faXmark} />
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <div class="parent">
+              <ul>
+                <div class="child">
+                  {/* Render the URL list with album information in the <ul> element */}
+                  {displayList.map((data) => (
+                    <li key={data.url}>
+                      <a
+                        href={data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={data.imageUrl} height="75" width="100"></img>
+                      </a>
+                      <a
+                        className="tall"
+                        href={data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {
+                          <span className="paddedSpan">
+                            {data.albumName}{' '}
+                            <span className="removeTextDecoration">—</span>{' '}
+                            <span className="italicsSpan">{data.artist}</span>
+                          </span>
+                        }
+                      </a>
+                      <a
+                        className="tall"
+                        href={data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {/* Include the genre in the list item */}
+                        {data.genre && (
+                          <span className="paddedSpan">{data.genre}</span>
+                        )}{' '}
+                      </a>
+                      <a
+                        className="tall"
+                        href={data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {/* Display the album rating if available */}
+                        {data.rating && (
+                          <span className="removeTextDecoration">
+                            Avg: {data.rating}
+                          </span>
+                        )}{' '}
+                      </a>
+                      {/* Add a button to delete the URL */}
+                      <button
+                        className="button-delete"
+                        onClick={() => handleDelete(data.url)}
+                      >
+                        <FontAwesomeIcon icon={faXmark} />
+                      </button>
+                    </li>
+                  ))}
+                </div>
+              </ul>
+            </div>
           </nav>
         </>
       ) : (
