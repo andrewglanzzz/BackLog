@@ -38,8 +38,8 @@ const Popup = () => {
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
-        const { url, albumName, artist, genre, rating } = message;
-        setActiveTabData({ url, albumName, artist, genre, rating });
+        const { url, imageUrl, albumName, artist, genre, rating } = message;
+        setActiveTabData({ url, imageUrl, albumName, artist, genre, rating });
 
         // Check if the URL is already present in localStorage
         const storedUrlList = JSON.parse(localStorage.getItem('urlList')) || [];
@@ -50,6 +50,7 @@ const Popup = () => {
           const currentTime = new Date().getTime();
           const newItem = {
             url,
+            imageUrl,
             albumName,
             artist,
             genre,
@@ -108,9 +109,11 @@ const Popup = () => {
         chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
           // Handle the response from the content script
           if (response) {
-            const { url, albumName, artist, genre, rating } = response;
+            const { url, imageUrl, albumName, artist, genre, rating } =
+              response;
             setActiveTabData({
               url,
+              imageUrl,
               albumName,
               artist,
               genre,
@@ -127,6 +130,7 @@ const Popup = () => {
               const currentTime = new Date().getTime();
               const newItem = {
                 url,
+                imageUrl,
                 albumName,
                 artist,
                 genre,
@@ -355,7 +359,7 @@ const Popup = () => {
               {/* Render the URL list with album information in the <ul> element */}
               {displayList.map((data) => (
                 <li key={data.url}>
-                  <img src="https://placehold.co/75x75" width="75"></img>
+                  <img src={data.imageUrl} width="75"></img>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
                     {
                       <span className="paddedSpan">

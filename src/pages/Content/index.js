@@ -45,20 +45,20 @@ function extractAlbumInfo() {
 
   const coverArtDiv = document.querySelector(`.coverart_${albumNumber}`);
 
+  // imageURL needs HTTPS in the constructor for the e.snmc.io images.
+  // for example -> //e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
+  // needs to turn into https://e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
+
+  let imageUrl = '';
+
   if (coverArtDiv) {
     const imgElement = coverArtDiv.querySelector('img');
     const srcsetValue = imgElement.getAttribute('srcset');
 
     if (srcsetValue) {
       // Extract the URL from srcset
-      const imageUrl = srcsetValue.split(', ')[0].split(' ')[0];
+      imageUrl = 'https:' + srcsetValue.split(', ')[0].split(' ')[0];
       console.log('Image URL: ' + imageUrl);
-
-      // Now you can create an image element and set its src attribute
-      const image = new Image();
-      image.src = imageUrl;
-      // Append the image to a container element
-      // For example: document.body.appendChild(image);
     } else {
       console.log('No srcset attribute found');
     }
@@ -66,11 +66,14 @@ function extractAlbumInfo() {
     console.log(`Cover art element for album ${albumNumber} not found`);
   }
 
+  console.log('printing image url again: ' + imageUrl);
+
   return {
     artist: artist || '',
     albumName: albumName || '',
     rating: rating || '',
     genre: genre || '',
+    imageUrl: imageUrl || '',
   };
 }
 
@@ -81,12 +84,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const url = window.location.href;
 
     // Extract album information from RateYourMusic
-    const { artist, albumName, rating, genre } = extractAlbumInfo(); // Include the genre in the extracted information
+    const { artist, albumName, rating, genre, imageUrl } = extractAlbumInfo(); // Include the genre in the extracted information
 
     // Send the URL, album name, artist, rating, and genre back to the popup
     chrome.runtime.sendMessage({
       action: 'sendURL',
       url: url,
+      imageUrl: imageUrl,
       albumName: albumName,
       artist: artist,
       rating: rating,
