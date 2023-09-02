@@ -24,18 +24,56 @@ function extractAlbumInfo() {
   // Loop through the meta tags to find the one with itemprop="genre"
   let genre = '';
   for (const metaTag of metaTags) {
-    console.log('scanning for genre...');
     if (metaTag.getAttribute('itemprop') === 'genre') {
       genre = metaTag.getAttribute('content').trim();
       break; // Stop the loop once we find the genre
     }
   }
 
+  // Use document.querySelector to dynamically scrape album art.
+  const albumShortcut = document.querySelector('.album_shortcut');
+  const shortcutValue = albumShortcut ? albumShortcut.value.trim() : '';
+
+  // Remove "Album" from the output and keep only the number
+  const albumNumber = shortcutValue.replace('Album', '').slice(1, -1);
+
+  console.log('album number: ' + albumNumber);
+
+  // Construct the selector for cover art using the album number
+  const coverArtSelector = `.coverart_${albumNumber}`; // Adjust class name format
+  const coverArtDivSelector = document.querySelector(coverArtSelector);
+
+  const coverArtDiv = document.querySelector(`.coverart_${albumNumber}`);
+
+  // imageURL needs HTTPS in the constructor for the e.snmc.io images.
+  // for example -> //e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
+  // needs to turn into https://e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
+
+  let imageUrl = '';
+
+  if (coverArtDiv) {
+    const imgElement = coverArtDiv.querySelector('img');
+    const srcsetValue = imgElement.getAttribute('srcset');
+
+    if (srcsetValue) {
+      // Extract the URL from srcset
+      imageUrl = 'https:' + srcsetValue.split(', ')[0].split(' ')[0];
+      console.log('Image URL: ' + imageUrl);
+    } else {
+      console.log('No srcset attribute found');
+    }
+  } else {
+    console.log(`Cover art element for album ${albumNumber} not found`);
+  }
+
+  console.log('printing image url again: ' + imageUrl);
+
   return {
     artist: artist || '',
     albumName: albumName || '',
     rating: rating || '',
-    genre: genre || '', // Add the genre to the return object
+    genre: genre || '',
+    imageUrl: imageUrl || '',
   };
 }
 
@@ -46,12 +84,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const url = window.location.href;
 
     // Extract album information from RateYourMusic
-    const { artist, albumName, rating, genre } = extractAlbumInfo(); // Include the genre in the extracted information
+    const { artist, albumName, rating, genre, imageUrl } = extractAlbumInfo(); // Include the genre in the extracted information
 
     // Send the URL, album name, artist, rating, and genre back to the popup
     chrome.runtime.sendMessage({
       action: 'sendURL',
       url: url,
+      imageUrl: imageUrl,
       albumName: albumName,
       artist: artist,
       rating: rating,

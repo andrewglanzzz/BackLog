@@ -1,3 +1,8 @@
+html {
+  height: 500px; /* max: 750px */
+  width: 550px; /* max: 1000px */
+}
+
 .h1-backlog {
   text-align: center;
   font-variant: small-caps;
@@ -9,11 +14,11 @@
 .sticky-h1 {
   position: sticky;
   top: 0;
-  background-color: #191c28; /* Replace this with the background color you want for the sticky header */
+  background-color: #191c28;
   z-index: 100; /* Ensure the header is above other content */
 
   /* Adjust the height and margin to make the sticky header taller */
-  height: 40px; /* Change the height to your desired value */
+  height: 40px;
   margin: 0;
   align-items: center;
 }
@@ -31,7 +36,8 @@
   left: 0px;
   right: 0px;
 
-  height: 400px;
+  height: 500px;
+  width: 530px;
   padding: 10px;
   background-color: #191c28;
   color: white;
@@ -54,14 +60,8 @@
   z-index: 200;
 }
 
-.sticky-header {
-  h1 {
-    position: sticky;
-    top: 0;
-  }
-}
-
 .button-backlog-album {
+  font-size: 14px;
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
@@ -69,14 +69,12 @@
   border: none;
   margin-left: auto;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
-
   -webkit-text-stroke: 0.1px black;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  background: #65c5d7;
+  background: #006ed1;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
@@ -86,6 +84,7 @@
 }
 
 .button-backlog-clear {
+  font-size: 14px;
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
@@ -93,14 +92,12 @@
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
-
   -webkit-text-stroke: 0.1px black;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  background: #ff6961;
+  background: #790000;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
@@ -110,6 +107,7 @@
 }
 
 .button-backlog-cancel {
+  font-size: 14px;
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
@@ -117,14 +115,12 @@
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
-
   -webkit-text-stroke: 0.1px black;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  background: #65c5d7;
+  background: #006ed1;
   background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
@@ -133,137 +129,133 @@
   touch-action: manipulation;
 }
 
-.button-backlog-album:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
-.button-backlog-clear:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
-.button-backlog-cancel:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-  outline: 0;
-}
-
 .button-backlog-album:hover {
-  background-color: #4d97a5;
+  background-color: #005dbf;
 }
 
 .button-backlog-clear:hover {
-  background-color: #cc544d;
+  background-color: #650000;
 }
 
 .button-backlog-cancel:hover {
-  background-color: #4d97a5;
+  background-color: #005dbf;
+}
+
+.button-delete {
+  border: none;
+  border-radius: 6px 0 6px 0;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #14171f;
+  margin-top: -227px;
+  margin-left: -85px;
+}
+
+.button-delete:hover {
+  background-color: #790000;
 }
 
 .input-search {
-  padding: 6px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
+  border-radius: 20px;
+  border: none;
   font-size: 16px;
   color: white;
-  background-color: #191c28;
+  background-color: #14171f;
   outline: none;
   height: 15px;
+  width: 400px;
   font-size: 12px;
+  padding-left: 30px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  margin-top: -31.5px;
+  margin-left: 52px;
+  pointer-events: none;
 }
 
 a:link {
   color: white;
-  height: 100%;
-  width: 50%;
-  display: flex;
+  text-decoration: none;
 }
 
 a:visited {
   color: white;
+  text-decoration: none;
 }
 
 /* Updated styles for column headers */
 .column-headers ul {
-  font-size: 11.7px;
+  text-align: center;
+  font-size: 14px;
   display: flex;
   padding: 0;
   margin: 0;
   list-style: none;
-  margin-bottom: 0px;
+  border-radius: 6px;
+  margin-bottom: -8px;
 }
 
 .column-headers li {
+  -webkit-text-stroke: 0.1px black;
   flex: 1;
-  text-align: center;
   padding: 8px;
   cursor: pointer;
-  border: 2px solid #ddd;
   border-left: none;
   user-select: none;
   -webkit-user-select: none;
-  background-color: #65c5d7;
+  background-color: #006ed1;
   color: white;
   font-weight: bold;
   border-radius: 0;
   transition: background-color 0.3s ease;
-  font-size: 90%; /* Set the font size to 75% of the original size */
+  font-size: 90%;
 }
 
 .column-headers li:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-left: 2px solid #ddd;
+  border-radius: 6px 0px 0px 6px;
 }
 
 .column-headers li:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: 0px 6px 6px 0px;
 }
 
 .column-headers li:hover {
-  background-color: #4d97a5;
-}
-
-/* Additional styles for the Recently Added header */
-.column-headers li.recentlyAdded {
-  background-color: #65c5d7;
-  border: 2px solid #ddd;
-}
-
-.column-headers li.recentlyAdded:hover {
-  background-color: #4d97a5;
-}
-
-.column-headers li.recentlyAdded span {
-  margin-left: 4px;
+  background-color: #005dbf;
 }
 
 /* Updated styles for URL list items */
+
+/* This defines the list itself */
 nav ul {
-  overflow-y: scroll;
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   list-style-type: none; /* Remove bullet point from the list items */
   padding: 0; /* Remove default padding for <ul> element */
 }
 
+/* This chunk determines the borders and background for each list item. */
 nav ul li {
-  display: flex box; /* Use flexbox to center the content */
   align-items: center; /* Center the content vertically */
-  padding: 8px;
+  padding: 6px;
   background-color: #14171f;
-  border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
+/* This defines the hover for the list item. Switches it to white. */
 nav ul li:hover {
   background-color: #2c303d; /* Change background color on hover */
 }
@@ -271,25 +263,17 @@ nav ul li:hover {
 /* Column headers are affected by this as well */
 nav li {
   display: flex; /* Display list items in a flex container */
-  align-items: center; /* Center contents vertically */
-  align-text: center;
-  justify-content: space-between; /* Spread contents evenly in the available space */
+  justify-content: center;
   padding: 8px;
   background-color: #191c28;
-  border: 1px solid #ddd;
   margin-bottom: 4px;
   border-radius: 6px;
 }
 
 nav ul li a {
   color: #000;
-  text-decoration: none;
   font-weight: bold;
-  text-align: center; /* Center the text within the link */
-  display: block; /* Use block display to ensure text centering */
-  width: 100%; /* Force the link to take the full width of its container */
-  padding-top: 10px;
-  padding-bottom: 10px;
+  display: block; /* Makes click area larger */
   padding-left: 3px;
   padding-right: 3px;
 }
@@ -304,33 +288,66 @@ nav li button {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 4px 8px;
   cursor: pointer;
   margin-left: 8px; /* Add some space between the buttons */
 }
 
-.paddedSpan {
-  text-align: left;
-  padding: 4px;
-  display: block;
-  overflow-wrap: anywhere;
+/* Add styles for the grid container */
+.grid-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Wrap items to the next row */
+  justify-content: space-evenly; /* Spacing between items in a row */
+  margin: 0 -10px; /* Negative margin to counteract padding on grid items */
+}
+
+/* Style the grid items */
+.grid-item {
+  width: 150px; /* Set the width for 4 items per row with spacing */
+  height: 220px;
+  margin: 3px; /* Spacing between items */
+  background-color: #14171f;
+  border-radius: 6px;
+  padding: 10px; /* Adjust padding as needed */
+  transition: background-color 0.3s ease;
+}
+
+/* Style the content within the grid items */
+.grid-item a.tall {
+  max-height: 2em; /* Set a maximum height for the text content */
+  display: block; /* Ensure proper handling of overflow */
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+  width: 150px;
+  max-width: 150px;
+  overflow: hidden;
+}
+
+/* Apply hover effect to grid items */
+.grid-item:hover {
+  background-color: #2c303d;
+}
+
+.boldSpan {
+  font-weight: bold;
+  width: 150px;
+  max-width: 150px;
 }
 
 .italicsSpan {
   font-style: italic;
 }
 
-.tallGenre {
+.tall {
   text-align: left;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  width: 100%;
-  height: 100%;
   justify-content: left;
-  align-items: left;
-  display: block;
 }
 
 .removeTextDecoration {
   font-weight: normal;
+}
+
+.absoluteArrow {
+  position: absolute;
+  margin-right: -15%;
 }

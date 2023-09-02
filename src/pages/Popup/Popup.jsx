@@ -1,6 +1,10 @@
 import React from 'react';
 import './Popup.css';
 import Fuse from 'fuse.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import 'font-awesome/css/font-awesome.min.css';
 
 const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
@@ -34,8 +38,8 @@ const Popup = () => {
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
-        const { url, albumName, artist, genre, rating } = message;
-        setActiveTabData({ url, albumName, artist, genre, rating });
+        const { url, imageUrl, albumName, artist, genre, rating } = message;
+        setActiveTabData({ url, imageUrl, albumName, artist, genre, rating });
 
         // Check if the URL is already present in localStorage
         const storedUrlList = JSON.parse(localStorage.getItem('urlList')) || [];
@@ -46,6 +50,7 @@ const Popup = () => {
           const currentTime = new Date().getTime();
           const newItem = {
             url,
+            imageUrl,
             albumName,
             artist,
             genre,
@@ -104,8 +109,16 @@ const Popup = () => {
         chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
           // Handle the response from the content script
           if (response) {
-            const { url, albumName, artist, genre, rating } = response;
-            setActiveTabData({ url, albumName, artist, genre, rating });
+            const { url, imageUrl, albumName, artist, genre, rating } =
+              response;
+            setActiveTabData({
+              url,
+              imageUrl,
+              albumName,
+              artist,
+              genre,
+              rating,
+            });
 
             // Check if the URL is already present in localStorage
             const storedUrlList =
@@ -117,6 +130,7 @@ const Popup = () => {
               const currentTime = new Date().getTime();
               const newItem = {
                 url,
+                imageUrl,
                 albumName,
                 artist,
                 genre,
@@ -197,9 +211,17 @@ const Popup = () => {
   const getSortIcon = (column) => {
     if (sortColumn === column) {
       if (column === 'rating') {
-        return sortOrder === 'desc' ? <span>&darr;</span> : <span>&uarr;</span>;
+        return sortOrder === 'desc' ? (
+          <span className="absoluteArrow">&darr;</span>
+        ) : (
+          <span className="absoluteArrow">&uarr;</span>
+        );
       } else {
-        return sortOrder === 'asc' ? <span>&darr;</span> : <span>&uarr;</span>;
+        return sortOrder === 'asc' ? (
+          <span className="absoluteArrow">&darr;</span>
+        ) : (
+          <span className="absoluteArrow">&uarr;</span>
+        );
       }
     } else {
       return null;
@@ -294,13 +316,6 @@ const Popup = () => {
       </h1>
       {!showWarning ? ( // <-- Hide everything behind warning message
         <>
-          <input
-            className="input-search"
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search BackLog..."
-          />
           <button
             className="button-backlog-album"
             onClick={handleClick}
@@ -315,6 +330,18 @@ const Popup = () => {
           >
             Clear All
           </button>
+          <div className="search-container">
+            <input
+              className="input-search"
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search..."
+            />
+            <div className="search-icon">
+              <FontAwesomeIcon icon={faSearch} />
+            </div>
+          </div>
           <nav className="column-headers">
             <ul>
               {/* Render the column headers with sorting icons */}
@@ -337,40 +364,70 @@ const Popup = () => {
           </nav>
           <nav>
             <ul>
-              {/* Render the URL list with album information in the <ul> element */}
-              {displayList.map((data) => (
-                <li key={data.url}>
-                  <a href={data.url} target="_blank" rel="noopener noreferrer">
-                    {
-                      <span className="paddedSpan">
-                        {data.albumName}{' '}
-                        <span className="removeTextDecoration">—</span>{' '}
-                        <span className="italicsSpan">{data.artist}</span>
-                      </span>
-                    }
-                  </a>
-                  <a
-                    className="tallGenre"
-                    href={data.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* Include the genre in the list item */}
-                    {data.genre && (
-                      <span className="paddedSpan">{data.genre}</span>
-                    )}{' '}
-                  </a>
-                  {/* Display the album rating if available */}
-                  {data.rating && <span>Avg: {data.rating}</span>}{' '}
-                  {/* Add a button to delete the URL */}
-                  <button
-                    className="button-delete"
-                    onClick={() => handleDelete(data.url)}
-                  >
-                    X
-                  </button>
-                </li>
-              ))}
+              <div className="grid-container">
+                {/* Render the URL list with album information in the <ul> element */}
+                {displayList.map((data) => (
+                  <div key={data.url} className="grid-item">
+                    <a
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={data.imageUrl} height="150" width="150"></img>
+                    </a>
+                    <a
+                      className="tall"
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {<span className="boldSpan">{data.albumName} </span>}
+                    </a>
+                    <a
+                      className="tall"
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="italicsSpan">{data.artist}</span>
+                    </a>
+                    <a
+                      className="tall"
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {/* Include the genre in the list item */}
+                      {data.genre && (
+                        <span className="paddedSpan">{data.genre}</span>
+                      )}{' '}
+                    </a>
+                    <a
+                      className="tall"
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {/* Display the album rating if available */}
+                      {data.rating && (
+                        <span className="removeTextDecoration">
+                          Average: {data.rating}
+                        </span>
+                      )}{' '}
+                    </a>
+                    {/* Add a button to delete the URL */}
+                    <button
+                      className="button-delete"
+                      onClick={() => handleDelete(data.url)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        style={{ color: '#808080' }}
+                      />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </ul>
           </nav>
         </>
