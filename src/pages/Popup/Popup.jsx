@@ -412,7 +412,10 @@ const Popup = () => {
                       className="button-delete"
                       onClick={() => handleDelete(data.url)}
                     >
-                      <FontAwesomeIcon icon={faXmark} />
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        style={{ color: '#ffffff' }}
+                      />
                     </button>
                   </div>
                 ))}
