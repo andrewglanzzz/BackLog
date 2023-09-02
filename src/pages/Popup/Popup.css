@@ -198,6 +198,7 @@ a:visited {
   margin: 0;
   list-style: none;
   border-radius: 6px;
+  margin-bottom: -8px;
 }
 
 .column-headers li {
@@ -257,7 +258,6 @@ nav ul li:hover {
 /* Column headers are affected by this as well */
 nav li {
   display: flex; /* Display list items in a flex container */
-
   justify-content: space-between; /* Spread contents evenly in the available space */
   padding: 8px;
   background-color: #191c28;
@@ -306,6 +306,8 @@ nav li button {
   padding: 10px; /* Adjust padding as needed */
   transition: background-color 0.3s ease;
   text-overflow: ellipsis;
+  max-width: 150px;
+  max-height: 250px;
 }
 
 /* Style the content within the grid items */
@@ -324,7 +326,6 @@ nav li button {
 /* Adjust any specific styles for the grid items here */
 
 .paddedSpan {
-  text-overflow: ellipsis;
 }
 
 .italicsSpan {
