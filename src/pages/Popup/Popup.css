@@ -147,7 +147,7 @@ html {
   position: absolute;
   height: 20px;
   width: 20px;
-  background: #262a33;
+  background: #14171f;
   margin-top: -227px;
   margin-left: -85px;
 }
@@ -304,7 +304,7 @@ nav li button {
 /* Style the grid items */
 .grid-item {
   width: 150px; /* Set the width for 4 items per row with spacing */
-  height: 250px;
+  height: 220px;
   margin: 3px; /* Spacing between items */
   background-color: #14171f;
   border-radius: 6px;
