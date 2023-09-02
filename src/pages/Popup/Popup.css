@@ -142,9 +142,14 @@ html {
 }
 
 .button-delete {
-  height: 30px;
+  border: none;
+  border-radius: 0 6px 0 6px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
   background: #790000;
-  margin-left: -130px;
+  margin-top: -227px;
+  margin-left: 65px;
 }
 
 .button-delete:hover {
