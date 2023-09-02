@@ -211,9 +211,17 @@ const Popup = () => {
   const getSortIcon = (column) => {
     if (sortColumn === column) {
       if (column === 'rating') {
-        return sortOrder === 'desc' ? <span>&darr;</span> : <span>&uarr;</span>;
+        return sortOrder === 'desc' ? (
+          <span className="absoluteArrow">&darr;</span>
+        ) : (
+          <span className="absoluteArrow">&uarr;</span>
+        );
       } else {
-        return sortOrder === 'asc' ? <span>&darr;</span> : <span>&uarr;</span>;
+        return sortOrder === 'asc' ? (
+          <span className="absoluteArrow">&darr;</span>
+        ) : (
+          <span className="absoluteArrow">&uarr;</span>
+        );
       }
     } else {
       return null;

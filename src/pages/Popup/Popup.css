@@ -263,7 +263,7 @@ nav ul li:hover {
 /* Column headers are affected by this as well */
 nav li {
   display: flex; /* Display list items in a flex container */
-  justify-content: space-between; /* Spread contents evenly in the available space */
+  justify-content: center;
   padding: 8px;
   background-color: #191c28;
   margin-bottom: 4px;
@@ -345,4 +345,9 @@ nav li button {
 
 .removeTextDecoration {
   font-weight: normal;
+}
+
+.absoluteArrow {
+  position: absolute;
+  margin-right: -15%;
 }
