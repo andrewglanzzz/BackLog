@@ -310,9 +310,6 @@ nav li button {
   border-radius: 6px;
   padding: 10px; /* Adjust padding as needed */
   transition: background-color 0.3s ease;
-  text-overflow: ellipsis;
-  max-width: 150px;
-  max-height: 250px;
 }
 
 /* Style the content within the grid items */
@@ -321,6 +318,9 @@ nav li button {
   display: block; /* Ensure proper handling of overflow */
   white-space: nowrap; /* Prevent text from wrapping */
   text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+  width: 150px;
+  max-width: 150px;
+  overflow: hidden;
 }
 
 /* Apply hover effect to grid items */
@@ -328,13 +328,10 @@ nav li button {
   background-color: #2c303d;
 }
 
-/* Adjust any specific styles for the grid items here */
-
-.paddedSpan {
-}
-
 .boldSpan {
   font-weight: bold;
+  width: 150px;
+  max-width: 150px;
 }
 
 .italicsSpan {
