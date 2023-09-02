@@ -373,7 +373,7 @@ const Popup = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {<span className="paddedSpan">{data.albumName} </span>}
+                      {<span className="boldSpan">{data.albumName} </span>}
                     </a>
                     <a
                       className="tall"
@@ -403,7 +403,7 @@ const Popup = () => {
                       {/* Display the album rating if available */}
                       {data.rating && (
                         <span className="removeTextDecoration">
-                          Avg: {data.rating}
+                          Average: {data.rating}
                         </span>
                       )}{' '}
                     </a>

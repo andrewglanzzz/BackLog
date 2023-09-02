@@ -328,6 +328,10 @@ nav li button {
 .paddedSpan {
 }
 
+.boldSpan {
+  font-weight: bold;
+}
+
 .italicsSpan {
   font-style: italic;
 }
