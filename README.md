@@ -33,7 +33,7 @@ BackLog will allow you to store the albums you want to listen to in an extension
 
 ### Executing program
 
-BackLog installs as an extension on Chrome. Click on the BackLog icon to open the extension.  
+BackLog installs as an **extension on Chrome.** Click on the BackLog icon to open the extension.  
 
 When you find an album you want to BackLog, click the "BackLog this album" button to store it in the extension!  
 
