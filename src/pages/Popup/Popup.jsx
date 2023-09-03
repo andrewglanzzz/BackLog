@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Popup.css';
 import Fuse from 'fuse.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,7 @@ const Popup = () => {
   const [isBackLogged, setIsBackLogged] = React.useState(false);
   const [initialUrlListLength, setInitialUrlListLength] = React.useState(0);
   const [displayList, setDisplayList] = React.useState([]);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -367,7 +368,12 @@ const Popup = () => {
               <div className="grid-container">
                 {/* Render the URL list with album information in the <ul> element */}
                 {displayList.map((data) => (
-                  <div key={data.url} className="grid-item">
+                  <div
+                    key={data.url}
+                    className="grid-item"
+                    onMouseEnter={() => setHoveredItem(data.url)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
                     <a
                       href={data.url}
                       target="_blank"
@@ -417,7 +423,9 @@ const Popup = () => {
                     </a>
                     {/* Add a button to delete the URL */}
                     <button
-                      className="button-delete"
+                      className={`button-delete ${
+                        hoveredItem === data.url ? 'show' : ''
+                      }`}
                       onClick={() => handleDelete(data.url)}
                     >
                       <FontAwesomeIcon
