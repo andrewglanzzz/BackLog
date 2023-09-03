@@ -25,7 +25,8 @@ BackLog will allow you to store the albums you want to listen to in an extension
 ![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/31b7f144-762a-4e44-84e4-e0a0e808283a)
 
 ### • And More!
-![265237173-78034da3-5845-4828-a12b-185978b004df](https://github.com/andrewglanzzz/BackLog/assets/60935069/8683fdac-8604-4b54-98cc-6fca38ed8945)
+![265237173-78034da3-5845-4828-a12b-185978b004df](https://github.com/andrewglanzzz/BackLog/assets/60935069/04839e9e-e4a3-4644-bfd2-386b152436bb)
+
 
 ## Installing
 
