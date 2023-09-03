@@ -1,4 +1,4 @@
-# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A RateYourMusic Tool 
+# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A Rate Your Music Tool 
 
 
 BackLog allows users to store and organize albums they want to listen to within a Chrome extension.
@@ -7,9 +7,9 @@ BackLog allows users to store and organize albums they want to listen to within 
 
 ## Description
 
-Do you find it difficult to remember every album you want to listen to while browsing RateYourMusic? Are you tired of your bookmarks being clogged with RateYourMusic links? Well, here's a solution.
+Do you find it difficult to remember every album you want to listen to while browsing RateYourMusic? Are you tired of your bookmarks being clogged with Rate Your Music links? Well, here's a solution.
 
-If you are an avid user of RateYourMusic, you have certainly run into the issue of managing your backlog. Managing and tracking your backlog can be overwhelming and time consuming, and RateYourMusic lacks a way to easily catagorize music you would like to eventually listen to. BackLog is here to solve this issue.
+If you are an avid user of Rate Your Music, you have certainly run into the issue of managing your backlog. Managing and tracking your backlog can be overwhelming and time consuming, and Rate Your Music lacks a way to easily catagorize music you would like to eventually listen to. BackLog is here to solve this issue.
 
 BackLog will allow you to store the albums you want to listen to in an extension, freeing your bookmarks bar from unnecessary links.
 
