@@ -46,10 +46,6 @@ You can delete albums by hovering over them and clicking the X in the top left c
 
 [Andrew Glanz](https://github.com/andrewglanzzz)
 
-## Version History
-
--- Versions go here
-
 ## Acknowledgments
 
 - [Rate Your Music](https://rateyourmusic.com/)
