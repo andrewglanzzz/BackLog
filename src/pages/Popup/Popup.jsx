@@ -430,7 +430,7 @@ const Popup = () => {
                     >
                       <FontAwesomeIcon
                         icon={faXmark}
-                        style={{ color: '#808080' }}
+                        style={{ color: '#FFFFFF' }}
                       />
                     </button>
                   </div>

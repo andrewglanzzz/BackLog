@@ -149,7 +149,6 @@ html {
 /* Show the button when the item is hovered */
 .grid-item:hover .button-delete {
   display: block;
-  transition: background-color 0.3s ease;
   border: none;
   border-radius: 6px 0 6px 0;
   position: absolute;
@@ -158,6 +157,10 @@ html {
   background: #2c303d;
   margin-top: -227px;
   margin-left: -10px;
+}
+
+.grid-item:hover .button-delete:hover {
+  background: #790000;
 }
 
 .input-search {
@@ -313,7 +316,7 @@ nav li button {
   background-color: #14171f;
   border-radius: 6px;
   padding: 10px; /* Adjust padding as needed */
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 /* Style the content within the grid items */
