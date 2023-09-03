@@ -404,9 +404,7 @@ const Popup = () => {
                       rel="noopener noreferrer"
                     >
                       {/* Include the genre in the list item */}
-                      {data.genre && (
-                        <span className="paddedSpan">{data.genre}</span>
-                      )}{' '}
+                      {data.genre && <span>{data.genre}</span>}{' '}
                     </a>
                     <a
                       className="tall"
