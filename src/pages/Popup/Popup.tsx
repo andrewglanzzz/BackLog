@@ -6,17 +6,44 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
 
+interface Message {
+  action: string;
+  payload: AlbumData;
+}
+
+interface AlbumData {
+  action?: string;
+  url: string;
+  imageUrl: string;
+  albumName: string;
+  artist: string;
+  rating: string;
+  genre: string;
+  timestamp: number;
+}
+
+type SortColumn =
+  | 'recentlyAdded'
+  | 'artist'
+  | 'rating'
+  | 'genre'
+  | 'albumName'
+  | 'timestamp';
+
 const Popup = () => {
-  const [activeTabData, setActiveTabData] = React.useState(null);
-  const [urlList, setUrlList] = React.useState([]);
+  const [activeTabData, setActiveTabData] = React.useState<AlbumData | null>(
+    null
+  );
+  const [urlList, setUrlList] = React.useState<AlbumData[]>([]);
   const [showWarning, setShowWarning] = React.useState(false);
-  const [sortColumn, setSortColumn] = React.useState('recentlyAdded');
+  const [sortColumn, setSortColumn] =
+    React.useState<SortColumn>('recentlyAdded');
   const [sortOrder, setSortOrder] = React.useState('desc');
   const [searchQuery, setSearchQuery] = React.useState('');
   const [isBackLogged, setIsBackLogged] = React.useState(false);
   const [initialUrlListLength, setInitialUrlListLength] = React.useState(0);
-  const [displayList, setDisplayList] = React.useState([]);
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [displayList, setDisplayList] = React.useState<AlbumData[]>([]);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -30,32 +57,33 @@ const Popup = () => {
     const storedSortColumn = localStorage.getItem('sortColumn');
     const storedSortOrder = localStorage.getItem('sortOrder');
     if (storedSortColumn) {
-      setSortColumn(storedSortColumn);
+      setSortColumn(storedSortColumn as SortColumn);
     }
     if (storedSortOrder) {
       setSortOrder(storedSortOrder);
     }
 
     // Listen for messages from the content script
-    chrome.runtime.onMessage.addListener((message) => {
+    chrome.runtime.onMessage.addListener((message: AlbumData) => {
       if (message.action === 'sendURL') {
         const { url, imageUrl, albumName, artist, genre, rating } = message;
-        setActiveTabData({ url, imageUrl, albumName, artist, genre, rating });
-
+        //TODO: Why deconstruction?? Need to look at setActiveTabData
+        setActiveTabData({ ...message });
+        const list = localStorage.getItem('urlList');
         // Check if the URL is already present in localStorage
-        const storedUrlList = JSON.parse(localStorage.getItem('urlList')) || [];
-        const existingItem = storedUrlList.find((item) => item.url === url);
+        if (!list) {
+          return;
+        }
+        const storedUrlList = JSON.parse(list) || [];
+        const existingItem = storedUrlList.find(
+          (item: AlbumData) => item.url === url
+        );
 
         if (!existingItem) {
           // If the URL is not present, add it along with the current timestamp
           const currentTime = new Date().getTime();
           const newItem = {
-            url,
-            imageUrl,
-            albumName,
-            artist,
-            genre,
-            rating,
+            ...message,
             timestamp: currentTime,
           };
           const newUrlList = [...storedUrlList, newItem];
@@ -104,14 +132,21 @@ const Popup = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs && tabs.length > 0) {
         const activeTab = tabs[0];
-        const tabId = activeTab.id;
+        const tabId: number | undefined = activeTab.id;
 
         // Send a message to the content script
-        chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
+        chrome.tabs.sendMessage(tabId!, { action: 'getURL' }, (response) => {
           // Handle the response from the content script
           if (response) {
-            const { url, imageUrl, albumName, artist, genre, rating } =
-              response;
+            const {
+              url,
+              imageUrl,
+              albumName,
+              artist,
+              genre,
+              rating,
+              timestamp,
+            } = response;
             setActiveTabData({
               url,
               imageUrl,
@@ -119,12 +154,15 @@ const Popup = () => {
               artist,
               genre,
               rating,
+              timestamp,
             });
 
             // Check if the URL is already present in localStorage
             const storedUrlList =
-              JSON.parse(localStorage.getItem('urlList')) || [];
-            const existingItem = storedUrlList.find((item) => item.url === url);
+              JSON.parse(localStorage.getItem('urlList')!) || [];
+            const existingItem = storedUrlList.find(
+              (item: AlbumData) => item.url === url
+            );
 
             if (!existingItem) {
               // If the URL is not present, add it along with the current timestamp
@@ -162,7 +200,7 @@ const Popup = () => {
     });
   };
 
-  const handleDelete = (url) => {
+  const handleDelete = (url: string) => {
     // Remove the URL from the URL list
     const updatedUrlList = urlList.filter((item) => item.url !== url);
     setUrlList(updatedUrlList);
@@ -189,7 +227,7 @@ const Popup = () => {
     setShowWarning(false);
   };
 
-  const handleSort = (column) => {
+  const handleSort = (column: SortColumn) => {
     if (column === 'recentlyAdded') {
       setSortColumn(column);
       setSortOrder('desc'); // Set the default sort order to descending for recentlyAdded
@@ -209,7 +247,7 @@ const Popup = () => {
     }
   };
 
-  const getSortIcon = (column) => {
+  const getSortIcon = (column: SortColumn) => {
     if (sortColumn === column) {
       if (column === 'rating') {
         return sortOrder === 'desc' ? (
@@ -236,7 +274,7 @@ const Popup = () => {
     distance: 100, // Set a lower distance to limit edit distance between query and results
   };
 
-  const customSort = (a, b) => {
+  const customSort = (a: any, b: any) => {
     if (sortColumn === 'recentlyAdded') {
       // Sort by recently added (timestamp)
       const aValue = a.timestamp;
@@ -268,7 +306,7 @@ const Popup = () => {
     }
   };
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: any) => {
     setSearchQuery(event.target.value);
 
     // Sort and update the displayList based on the search query
@@ -367,7 +405,7 @@ const Popup = () => {
             <ul>
               <div className="grid-container">
                 {/* Render the URL list with album information in the <ul> element */}
-                {displayList.map((data) => (
+                {displayList.map((data: AlbumData) => (
                   <div
                     key={data.url}
                     className="grid-item"

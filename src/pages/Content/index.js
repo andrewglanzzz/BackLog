@@ -95,6 +95,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       artist: artist,
       rating: rating,
       genre: genre, // Include the genre in the data sent back to the popup
+      timestamp: new Date.getTime(),
     });
   }
 });
