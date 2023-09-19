@@ -1,8 +1,3 @@
-import { printLine } from './modules/print';
-
-console.log('Content script works!');
-console.log('Must reload extension for modifications to take effect.');
-
 // Function to extract album information from the page
 function extractAlbumInfo() {
   const titleElement = document.querySelector('title');
@@ -37,8 +32,6 @@ function extractAlbumInfo() {
   // Remove "Album" from the output and keep only the number
   const albumNumber = shortcutValue.replace('Album', '').slice(1, -1);
 
-  console.log('album number: ' + albumNumber);
-
   // Construct the selector for cover art using the album number
   const coverArtSelector = `.coverart_${albumNumber}`; // Adjust class name format
   const coverArtDivSelector = document.querySelector(coverArtSelector);
@@ -58,15 +51,14 @@ function extractAlbumInfo() {
     if (srcsetValue) {
       // Extract the URL from srcset
       imageUrl = 'https:' + srcsetValue.split(', ')[0].split(' ')[0];
-      console.log('Image URL: ' + imageUrl);
     } else {
       console.log('No srcset attribute found');
     }
   } else {
     console.log(`Cover art element for album ${albumNumber} not found`);
+    imageUrl =
+      'https://placehold.co/150x150?text=No+Image+Provided&font=roboto/';
   }
-
-  console.log('printing image url again: ' + imageUrl);
 
   return {
     artist: artist || '',
