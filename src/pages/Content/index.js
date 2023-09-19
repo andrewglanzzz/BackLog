@@ -35,10 +35,6 @@ function extractAlbumInfo() {
   // Construct the selector for cover art using the album number
   const coverArtDiv = document.querySelector(`.coverart_${albumNumber}`);
 
-  // imageURL needs HTTPS in the constructor for the e.snmc.io images.
-  // for example -> //e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
-  // needs to turn into https://e.snmc.io/i/600/w/cda536546713c10522753945858a487f/10984528/genesis-owusu-struggler-Cover-Art.jpg
-
   let imageUrl = '';
 
   if (coverArtDiv) {
@@ -47,9 +43,12 @@ function extractAlbumInfo() {
 
     if (srcsetValue) {
       // Extract the URL from srcset
+      // imageURL needs HTTPS in the constructor for the e.snmc.io images or else it WILL NOT WORK!
       imageUrl = 'https:' + srcsetValue.split(', ')[0].split(' ')[0];
     } else {
       console.log('No srcset attribute found');
+      imageUrl =
+        'https://placehold.co/150x150?text=No+Image+Provided&font=roboto/';
     }
   } else {
     console.log(`Cover art element for album ${albumNumber} not found`);
@@ -88,7 +87,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-// Optional: If you want to send messages from the content script to the popup, you can do it like this:
 // Function to handle messages sent from the content script to the popup
 function handleMessageFromContentScript(message, sender, sendResponse) {
   // Process the message as needed
@@ -101,5 +99,5 @@ function handleMessageFromContentScript(message, sender, sendResponse) {
   }
 }
 
-// Add a listener for messages from the popup (if needed)
+// Add a listener for messages from the popup
 chrome.runtime.onMessage.addListener(handleMessageFromContentScript);
