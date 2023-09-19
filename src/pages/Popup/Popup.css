@@ -14,12 +14,15 @@ html {
 .sticky-h1 {
   position: sticky;
   top: 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   background-color: #191c28;
   z-index: 100; /* Ensure the header is above other content */
-
   /* Adjust the height and margin to make the sticky header taller */
   height: 40px;
-  margin: 0;
+
   align-items: center;
 }
 
@@ -316,7 +319,10 @@ nav li {
 .grid-item {
   width: 150px; /* Set the width for 4 items per row with spacing */
   height: 220px;
-  margin: 3px; /* Spacing between items */
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   background-color: #14171f;
   border-radius: 6px;
   padding: 10px; /* Adjust padding as needed */
