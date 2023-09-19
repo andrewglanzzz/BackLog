@@ -64,7 +64,7 @@ html {
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
-  border-radius: 6px;
+  border-radius: 20px;
   border: none;
   margin-left: auto;
   margin-bottom: 10px;
@@ -87,7 +87,7 @@ html {
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
-  border-radius: 6px;
+  border-radius: 20px;
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -110,7 +110,7 @@ html {
   align-items: center;
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
-  border-radius: 6px;
+  border-radius: 20px;
   border: none;
   margin-left: 10px;
   margin-bottom: 10px;
