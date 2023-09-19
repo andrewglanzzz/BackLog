@@ -165,6 +165,7 @@ html {
 
 .search-container {
   display: flex;
+  align-items: center;
 }
 
 .input-search {
@@ -187,9 +188,9 @@ html {
 
 .search-icon {
   position: absolute;
-  left: -2px;
+  left: -1px;
   margin-left: 52px;
-  margin-top: 5px;
+  margin-top: -10px;
   pointer-events: none;
 }
 

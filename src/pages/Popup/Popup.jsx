@@ -344,7 +344,7 @@ const Popup = () => {
               <FontAwesomeIcon icon={faSearch} />
             </div>
             <button className="button-backlog-lucky" role="button">
-              I'm Feeling Lucky!
+              I'm Feeling Lucky
             </button>
           </div>
           <nav className="column-headers">
