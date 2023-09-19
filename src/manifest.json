@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "BackLog for RateYourMusic",
+  "name": "BackLog for Rate Your Music",
   "version": "1.0.0",
-  "description": "A RateYourMusic extension that allows you to BackLog albums",
+  "description": "A Rate Your Music extension that allows you to BackLog albums.",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
