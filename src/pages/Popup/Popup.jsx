@@ -339,9 +339,13 @@ const Popup = () => {
               onChange={handleSearchChange}
               placeholder="Search..."
             />
+
             <div className="search-icon">
               <FontAwesomeIcon icon={faSearch} />
             </div>
+            <button className="button-backlog-lucky" role="button">
+              I'm Feeling Lucky!
+            </button>
           </div>
           <nav className="column-headers">
             <ul>

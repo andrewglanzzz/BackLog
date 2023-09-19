@@ -163,13 +163,15 @@ html {
   background: #790000;
 }
 
-.input-search {
+.search-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.input-search {
+  justify-content: left;
+  align-items: left;
   padding: 6px 14px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 30px;
   margin-bottom: 10px;
   border-radius: 20px;
   border: none;
@@ -178,17 +180,44 @@ html {
   background-color: #14171f;
   outline: none;
   height: 15px;
-  width: 400px;
+  width: 300px;
   font-size: 12px;
   padding-left: 30px;
 }
 
 .search-icon {
   position: absolute;
-  left: 10px;
-  margin-top: -31.5px;
+  left: -2px;
   margin-left: 52px;
+  margin-top: 5px;
   pointer-events: none;
+}
+
+.button-backlog-lucky {
+  font-size: 12px;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif, bold;
+  border-radius: 20px;
+  border: none;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+  -webkit-text-stroke: 0.1px black;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  background: #006ed1;
+  background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-backlog-lucky:hover {
+  background-color: #005dbf;
 }
 
 a:link {
