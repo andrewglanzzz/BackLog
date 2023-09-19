@@ -57,10 +57,10 @@ function extractAlbumInfo() {
   }
 
   return {
-    artist: artist || '',
-    albumName: albumName || '',
-    rating: rating || '',
-    genre: genre || '',
+    artist: artist || 'Album: N/A',
+    albumName: albumName || 'Artist: N/A',
+    rating: rating || '0 / No Ratings',
+    genre: genre || 'Genre: N/A',
     imageUrl: imageUrl || '',
   };
 }
