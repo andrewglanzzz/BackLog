@@ -33,9 +33,6 @@ function extractAlbumInfo() {
   const albumNumber = shortcutValue.replace('Album', '').slice(1, -1);
 
   // Construct the selector for cover art using the album number
-  const coverArtSelector = `.coverart_${albumNumber}`; // Adjust class name format
-  const coverArtDivSelector = document.querySelector(coverArtSelector);
-
   const coverArtDiv = document.querySelector(`.coverart_${albumNumber}`);
 
   // imageURL needs HTTPS in the constructor for the e.snmc.io images.
