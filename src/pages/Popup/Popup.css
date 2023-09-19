@@ -35,7 +35,6 @@ html {
   bottom: 0px;
   left: 0px;
   right: 0px;
-
   height: 500px;
   width: 530px;
   padding: 10px;
@@ -166,6 +165,7 @@ html {
 .search-container {
   display: flex;
   align-items: center;
+  margin-bottom: 2.5px;
 }
 
 .input-search {
