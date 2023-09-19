@@ -325,7 +325,7 @@ nav li {
 
 /* Style the content within the grid items */
 .grid-item a.tall {
-  max-height: 2em; /* Set a maximum height for the text content */
+  max-height: 16px;
   display: block; /* Ensure proper handling of overflow */
   white-space: nowrap; /* Prevent text from wrapping */
   text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
@@ -350,7 +350,9 @@ nav li {
 }
 
 .tall {
+  max-height: 16px;
   text-align: left;
+  padding: 0;
 }
 
 .removeTextDecoration {
