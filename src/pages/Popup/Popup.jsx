@@ -171,6 +171,23 @@ const Popup = () => {
     localStorage.setItem('urlList', JSON.stringify(updatedUrlList));
   };
 
+  const handleLucky = () => {
+    // Ensure there are URLs in the list
+    if (urlList.length > 0) {
+      // Generate a random index within the range of urlList
+      const randomIndex = Math.floor(Math.random() * urlList.length);
+
+      // Get the URL at the random index
+      const randomUrl = urlList[randomIndex].url;
+
+      // Redirect the user to the selected URL
+      window.open(randomUrl, '_blank');
+    } else {
+      // Handle the case when the URL list is empty
+      console.log('No URLs to choose from.');
+    }
+  };
+
   const handleClear = () => {
     // Show a warning message before clearing the URL list
     setShowWarning(true);
@@ -339,11 +356,14 @@ const Popup = () => {
               onChange={handleSearchChange}
               placeholder="Search..."
             />
-
             <div className="search-icon">
               <FontAwesomeIcon icon={faSearch} />
             </div>
-            <button className="button-backlog-lucky" role="button">
+            <button
+              className="button-backlog-lucky"
+              onClick={handleLucky}
+              role="button"
+            >
               I'm Feeling Lucky
             </button>
           </div>
