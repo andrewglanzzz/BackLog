@@ -1,9 +1,9 @@
-# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A Rate Your Music Tool 
+# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A [Rate Your Music](https://rateyourmusic.com/) Tool 
 
 
 BackLog allows users to store and organize albums they want to listen to within a Chrome extension.
 
-![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/58b41aee-bfa8-42c5-9c4a-31c769dcf91e)
+![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/497610aa-f78c-4fdd-95de-29b1de4eb745)
 
 ## Description
 
@@ -18,17 +18,16 @@ With BackLog, you can sort your albums with beautiful cover art, filter by speci
 ## Features
 
 ### • Album Filtering  
-![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/564fef5d-2443-46c9-bc2d-32ecac4463ad)
+![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/64c71393-e32e-47aa-a4a2-6079abcc1b16)
 
 ### • BackLog Management
-![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/36c84256-ca4d-4b4c-a170-3a6045eb4017)
+![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/60fbc781-ea49-4d9d-be4b-cea41927cc84)
 
 ### • Fuzzy Searching  
-![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/8d564f33-e7d9-4d5b-a4cd-13289748ae2d)
+![image](https://github.com/andrewglanzzz/BackLog/assets/60935069/3f9a996c-dfc3-4079-b39b-8be209a90b53)
 
 ### • And More!
-![269095649-dafae15f-028e-4a2c-8acb-0d5d014cd9a5](https://github.com/andrewglanzzz/BackLog/assets/60935069/7ac3e9f4-2c99-42dc-9172-9ec99f8afab0)
-
+![backlog5](https://github.com/andrewglanzzz/BackLog/assets/60935069/686eb2b5-b141-4865-926e-f3a158f514f4)
 
 ## Installing
 
