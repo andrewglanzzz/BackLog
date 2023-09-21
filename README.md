@@ -9,7 +9,7 @@ BackLog allows users to store and organize albums they want to listen to within 
 
 Do you find it difficult to remember every album you want to listen to while browsing Rate Your Music? Are you tired of your bookmarks being clogged with Rate Your Music links? Well, here's a solution.
 
-If you are an avid user of Rate Your Music, you have certainly run into the issue of managing your backlog. Managing and tracking your backlog can be overwhelming and time consuming, and Rate Your Music lacks a way to easily catagorize music you would like to eventually listen to. BackLog is here to solve this issue.
+If you are an avid user of Rate Your Music, you have certainly run into the issue of managing your backlog. Managing and tracking your backlog can be overwhelming and time consuming, and Rate Your Music lacks a way to easily categorize music you would like to eventually listen to. BackLog is here to solve this issue.
 
 BackLog will allow you to store the albums you want to listen to in an extension, freeing your bookmarks bar from unnecessary links. 
 
