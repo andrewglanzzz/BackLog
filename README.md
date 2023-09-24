@@ -31,7 +31,7 @@ With BackLog, you can sort your albums with beautiful cover art, filter by speci
 
 ## Installing
 
--- Chrome Web Store Link Here
+[Download from the Chrome Web Store!](https://chrome.google.com/webstore/detail/backlog-for-rate-your-mus/leopcflddppgddfhppgachdogbkmdjfa?hl=en)
 
 ### Executing program
 
@@ -54,4 +54,3 @@ You can delete albums by hovering over them and clicking the X in the top left c
 ## Acknowledgments
 
 - [Rate Your Music](https://rateyourmusic.com/)
-- [lxieyang](https://github.com/lxieyang/chrome-extension-boilerplate-react)
