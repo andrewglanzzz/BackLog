@@ -1,4 +1,4 @@
-# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A [Rate Your Music](https://rateyourmusic.com/) Tool 
+# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) [BackLog](https://chrome.google.com/webstore/detail/backlog-for-rate-your-mus/leopcflddppgddfhppgachdogbkmdjfa?hl=en) - A [Rate Your Music](https://rateyourmusic.com/) Tool 
 
 
 BackLog allows users to store and organize albums they want to listen to within a Chrome extension.
