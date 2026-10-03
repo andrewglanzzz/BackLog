@@ -22,3 +22,7 @@
 
 # secrets
 secrets.*.js
+*.pem
+
+
+
