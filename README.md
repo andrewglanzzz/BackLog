@@ -1,4 +1,4 @@
-# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) BackLog - A [Rate Your Music](https://rateyourmusic.com/) Tool 
+# ![icon-34](https://github.com/andrewglanzzz/BackLog/assets/60935069/84f7f47f-fbc2-4455-884f-8add78009d9a) [BackLog](https://chrome.google.com/webstore/detail/backlog-for-rate-your-mus/leopcflddppgddfhppgachdogbkmdjfa?hl=en) - A [Rate Your Music](https://rateyourmusic.com/) Tool 
 
 
 BackLog allows users to store and organize albums they want to listen to within a Chrome extension.
@@ -31,7 +31,7 @@ With BackLog, you can sort your albums with beautiful cover art, filter by speci
 
 ## Installing
 
--- Chrome Web Store Link Here
+[Download from the Chrome Web Store!](https://chrome.google.com/webstore/detail/backlog-for-rate-your-mus/leopcflddppgddfhppgachdogbkmdjfa?hl=en)
 
 ### Executing program
 
@@ -54,4 +54,3 @@ You can delete albums by hovering over them and clicking the X in the top left c
 ## Acknowledgments
 
 - [Rate Your Music](https://rateyourmusic.com/)
-- [lxieyang](https://github.com/lxieyang/chrome-extension-boilerplate-react)
