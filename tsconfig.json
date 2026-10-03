@@ -13,7 +13,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": false,
-    "jsx": "react"
+    "jsx": "react",
+    "ignoreDeprecations": "6.0" // temp fix, if extension breaks upon TypeScript 7.0 release, remove this line and fix the deprecation warnings
   },
   "include": ["src"],
   "exclude": ["build", "node_modules"]
