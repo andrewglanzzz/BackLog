@@ -16,7 +16,7 @@ import { importBacklogFile } from '../../../utils/backup';
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 const themes = [
   { value: 'midnight', label: 'Midnight' },
-  { value: 'oled', label: 'OLED dark' },
+  { value: 'oled', label: 'OLED Dark' },
   { value: 'light', label: 'Light' },
   { value: 'pistachio', label: 'Pistachio' },
   { value: 'dracula', label: 'Dracula' },
