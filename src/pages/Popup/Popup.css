@@ -6,8 +6,10 @@ html {
 .h1-backlog {
   text-align: center;
   font-variant: small-caps;
-  color: white;
-  margin-bottom: -10px;
+  color: var(--text);
+  margin: 0 0 10px;
+  line-height: 1.2;
+  font-size: 28px;
 }
 
 /* Styles for the sticky header */
@@ -18,12 +20,18 @@ html {
   margin-right: -20px;
   margin-top: 0px;
   margin-bottom: 0px;
-  background-color: #191c28;
+  background-color: var(--header-bg);
   z-index: 100; /* Ensure the header is above other content */
   /* Adjust the height and margin to make the sticky header taller */
   height: 40px;
 
   align-items: center;
+}
+
+html,
+body,
+.App {
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
@@ -41,8 +49,8 @@ html {
   height: 500px;
   width: 530px;
   padding: 10px;
-  background-color: #191c28;
-  color: white;
+  background-color: var(--page-bg);
+  color: var(--text);
   overflow: auto;
 }
 
@@ -53,7 +61,7 @@ html {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text);
 }
 
 .warning-message {
@@ -70,15 +78,15 @@ html {
   border-radius: 20px;
   border: none;
   margin-left: auto;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
-  color: #fff;
+  color: var(--accent-contrast);
   text-decoration: none;
   font-weight: bold;
-  background: #006ed1;
+  background: var(--accent);
   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+  box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
@@ -96,12 +104,12 @@ html {
   margin-bottom: 10px;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
-  color: #fff;
+  color: var(--accent-contrast);
   text-decoration: none;
   font-weight: bold;
-  background: #790000;
+  background: var(--danger);
   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+  box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
@@ -119,12 +127,12 @@ html {
   margin-bottom: 10px;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
-  color: #fff;
+  color: var(--accent-contrast);
   text-decoration: none;
   font-weight: bold;
-  background: #006ed1;
+  background: var(--accent);
   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+  box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
@@ -132,37 +140,45 @@ html {
 }
 
 .button-backlog-album:hover {
-  background-color: #005dbf;
+  background-color: var(--accent-hover);
 }
 
 .button-backlog-clear:hover {
-  background-color: #650000;
+  background-color: var(--danger-hover);
 }
 
 .button-backlog-cancel:hover {
-  background-color: #005dbf;
+  background-color: var(--accent-hover);
 }
 
 /* Initially hide the button */
 .button-delete {
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 8px;
+  background: var(--surface-hover);
+  color: var(--text);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 
 /* Show the button when the item is hovered */
 .grid-item:hover .button-delete {
-  display: block;
-  border: none;
-  border-radius: 6px 0 6px 0;
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  background: #2c303d;
-  margin-top: -227px;
-  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .grid-item:hover .button-delete:hover {
-  background: #790000;
+  background: var(--danger);
 }
 
 .search-container {
@@ -180,8 +196,8 @@ html {
   border-radius: 20px;
   border: none;
   font-size: 16px;
-  color: white;
-  background-color: #14171f;
+  color: var(--text);
+  background-color: var(--surface-card);
   outline: none;
   height: 15px;
   width: 300px;
@@ -208,12 +224,12 @@ html {
   margin-bottom: 10px;
   transition: background-color 0.3s ease; /* Add smooth transition effect */
   -webkit-text-stroke: 0.1px black;
-  color: #fff;
+  color: var(--accent-contrast);
   text-decoration: none;
   font-weight: bold;
-  background: #006ed1;
+  background: var(--accent);
   background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+  box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
@@ -221,16 +237,16 @@ html {
 }
 
 .button-backlog-lucky:hover {
-  background-color: #005dbf;
+  background-color: var(--accent-hover);
 }
 
 a:link {
-  color: white;
+  color: var(--text);
   text-decoration: none;
 }
 
 a:visited {
-  color: white;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -255,8 +271,8 @@ a:visited {
   border-left: none;
   user-select: none;
   -webkit-user-select: none;
-  background-color: #006ed1;
-  color: white;
+  background-color: var(--accent);
+  color: var(--accent-contrast);
   font-weight: bold;
   border-radius: 0px;
   transition: background-color 0.3s ease;
@@ -272,7 +288,7 @@ a:visited {
 }
 
 .column-headers li:hover {
-  background-color: #005dbf;
+  background-color: var(--accent-hover);
 }
 
 /* Updated styles for URL list items */
@@ -290,7 +306,7 @@ nav ul {
 nav ul li {
   align-items: center; /* Center the content vertically */
   padding: 6px;
-  background-color: #14171f;
+  background-color: var(--surface-card);
   margin-bottom: 4px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
@@ -301,7 +317,7 @@ nav li {
   display: flex; /* Display list items in a flex container */
   justify-content: center;
   padding: 8px;
-  background-color: #191c28;
+  background-color: var(--header-bg);
   margin-bottom: 4px;
   border-radius: 6px;
 }
@@ -317,38 +333,60 @@ nav li {
 
 /* Style the grid items */
 .grid-item {
+  position: relative;
   width: 150px; /* Set the width for 4 items per row with spacing */
   height: 220px;
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #14171f;
+  background-color: var(--surface-card);
   border-radius: 6px;
-  padding: 10px; /* Adjust padding as needed */
+  padding: 10px 10px 16px;
   transition: background-color 0.2s ease;
+  line-height: 1.35;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.grid-item img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 auto 8px;
+  border-radius: 4px;
 }
 
 /* Style the content within the grid items */
 .grid-item a.tall {
-  max-height: 16px;
-  display: block; /* Ensure proper handling of overflow */
-  white-space: nowrap; /* Prevent text from wrapping */
-  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
-  width: 150px;
-  max-width: 150px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+  margin: 0 0 2px;
+  font-size: 12px;
 }
 
 /* Apply hover effect to grid items */
 .grid-item:hover {
-  background-color: #2c303d;
+  background-color: var(--surface-hover);
 }
 
 .boldSpan {
   font-weight: bold;
-  width: 150px;
-  max-width: 150px;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+  font-size: 13px;
 }
 
 .italicsSpan {
@@ -359,6 +397,11 @@ nav li {
   max-height: 16px;
   text-align: left;
   padding: 0;
+  line-height: 1.35;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
 }
 
 .removeTextDecoration {
@@ -368,4 +411,163 @@ nav li {
 .absoluteArrow {
   position: absolute;
   margin-right: -67px;
+}
+
+.backup-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 27px;
+  margin: -4px 2px 6px;
+}
+
+.backup-status {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 11px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.backup-status.success {
+  color: var(--success);
+}
+
+.backup-status.error {
+  color: var(--error);
+}
+
+.button-backup {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--surface-hover);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.button-backup:hover {
+  background: var(--accent-hover);
+}
+
+.settings-toggle,
+.settings-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.settings-toggle {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  left: auto;
+  z-index: 101;
+  font-size: 16px;
+}
+
+.settings-toggle:hover,
+.settings-close:hover {
+  background: var(--surface-hover);
+}
+
+.settings-panel {
+  position: absolute;
+  top: 46px;
+  left: 8px;
+  right: 8px;
+  z-index: 99;
+  padding: 12px;
+  border: 1px solid var(--surface-hover);
+  border-top: 2px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface-card);
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--surface-hover);
+}
+
+.settings-heading h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.theme-select-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.theme-select-label select {
+  min-width: 150px;
+  padding: 6px 8px;
+  border: 1px solid var(--surface-hover);
+  border-radius: 4px;
+  background: var(--surface-card);
+  color: var(--text);
+  font: inherit;
+}
+
+.settings-divider {
+  height: 1px;
+  margin: 11px 0;
+  background: var(--surface-hover);
+}
+
+.backup-dropzone {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 8px;
+  border: 1px dashed var(--text-muted);
+  border-radius: 5px;
+  color: var(--text-muted);
+  font-size: 12px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.backup-dropzone.drag-active {
+  border-color: var(--accent);
+  background: var(--surface-card);
+  color: var(--text);
+}
+
+.backup-dropzone > span {
+  flex: 1;
+}
+
+.settings-backup-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
 }

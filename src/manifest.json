@@ -3,13 +3,26 @@
   "name": "BackLog for Rate Your Music",
   "version": "1.0.0",
   "description": "A Rate Your Music extension that allows you to BackLog albums.",
-  "background": { "service_worker": "background.bundle.js" },
+  "background": {
+    "scripts": ["background.bundle.js"]
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
   "icons": {
+    "32": "icon-34.png",
+    "48": "icon-34.png",
     "128": "icon-128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "backlog@andrewglanzzz.github.io",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
   },
   "content_scripts": [
     {

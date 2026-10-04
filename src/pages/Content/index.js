@@ -13,16 +13,15 @@ function extractAlbumInfo() {
   const ratingElement = document.querySelector('.avg_rating');
   const rating = ratingElement ? ratingElement.textContent.trim() : '';
 
-  // Use document.querySelectorAll to select all meta tags
-  const metaTags = document.querySelectorAll('meta');
-
-  // Loop through the meta tags to find the one with itemprop="genre"
+  // RateYourMusic exposes the primary genre in a dedicated block like:
+  // <span class="release_pri_genres"><a ...>Rage</a></span>
   let genre = '';
-  for (const metaTag of metaTags) {
-    if (metaTag.getAttribute('itemprop') === 'genre') {
-      genre = metaTag.getAttribute('content').trim();
-      break; // Stop the loop once we find the genre
-    }
+  const primaryGenreLink = document.querySelector(
+    '.release_pri_genres a, .release_pri_genre a, .genre a'
+  );
+
+  if (primaryGenreLink) {
+    genre = primaryGenreLink.textContent.trim();
   }
 
   // Use document.querySelector to dynamically scrape album art.
@@ -65,8 +64,10 @@ function extractAlbumInfo() {
   };
 }
 
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 // Listen for messages from the popup
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browserAPI.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'getURL') {
     // Get the URL of the active tab
     const url = window.location.href;
@@ -75,7 +76,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const { artist, albumName, rating, genre, imageUrl } = extractAlbumInfo(); // Include the genre in the extracted information
 
     // Send the URL, album name, artist, rating, and genre back to the popup
-    chrome.runtime.sendMessage({
+    browserAPI.runtime.sendMessage({
       action: 'sendURL',
       url: url,
       imageUrl: imageUrl,
@@ -100,4 +101,4 @@ function handleMessageFromContentScript(message, sender, sendResponse) {
 }
 
 // Add a listener for messages from the popup
-chrome.runtime.onMessage.addListener(handleMessageFromContentScript);
+browserAPI.runtime.onMessage.addListener(handleMessageFromContentScript);

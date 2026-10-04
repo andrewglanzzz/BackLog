@@ -1,0 +1,165 @@
+:root {
+  --page-bg: #191c28;
+  --header-bg: var(--page-bg);
+  --surface-card: #14171f;
+  --surface-hover: #2c303d;
+  --text: #f5f7ff;
+  --text-muted: #aeb4c2;
+  --accent: #006ed1;
+  --accent-hover: #005dbf;
+  --accent-contrast: #ffffff;
+  --danger: #790000;
+  --danger-hover: #650000;
+  --success: #a8d8b0;
+  --error: #ff9b9b;
+}
+
+:root[data-theme='oled'] {
+  --page-bg: #000000;
+  --surface-card: #101112;
+  --surface-hover: #252729;
+  --text: #f4f4f4;
+  --text-muted: #a6aaad;
+  --accent: #555b63;
+  --accent-hover: #6b727a;
+  --accent-contrast: #ffffff;
+  --danger: #e34d5b;
+  --danger-hover: #c93a49;
+  --success: #65d99a;
+  --error: #ff8792;
+}
+
+:root[data-theme='light'] {
+  --page-bg: #edf1f6;
+  --surface-card: #ffffff;
+  --surface-hover: #e1e7ef;
+  --text: #202633;
+  --text-muted: #687384;
+  --accent: #125ed0;
+  --accent-hover: #0a4aa8;
+  --accent-contrast: #ffffff;
+  --danger: #c53535;
+  --danger-hover: #a82424;
+  --success: #1c7c47;
+  --error: #ad3030;
+}
+
+:root[data-theme='pistachio'] {
+  --page-bg: #edf1e4;
+  --surface-card: #f7faef;
+  --surface-hover: #e3ebd7;
+  --text: #24352e;
+  --text-muted: #637469;
+  --accent: #597d50;
+  --accent-hover: #456840;
+  --accent-contrast: #ffffff;
+  --danger: #ad4c4b;
+  --danger-hover: #923d3c;
+  --success: #3d784c;
+  --error: #a13f3b;
+}
+
+:root[data-theme='dracula'] {
+  --page-bg: #282a36;
+  --surface-card: #343746;
+  --surface-hover: #44475a;
+  --text: #f8f8f2;
+  --text-muted: #b8b9c5;
+  --accent: #bd93f9;
+  --accent-hover: #a879e8;
+  --accent-contrast: #211c2a;
+  --danger: #ff5555;
+  --danger-hover: #e5444e;
+  --success: #50fa7b;
+  --error: #ff6e79;
+}
+
+:root[data-theme='solarized'] {
+  --page-bg: #002b36;
+  --surface-card: #0a3d49;
+  --surface-hover: #14505b;
+  --text: #eee8d5;
+  --text-muted: #a9b8b2;
+  --accent: #2aa198;
+  --accent-hover: #21867e;
+  --accent-contrast: #ffffff;
+  --danger: #dc5656;
+  --danger-hover: #bd4444;
+  --success: #83b566;
+  --error: #f17c6d;
+}
+
+:root[data-theme='sunset'] {
+  --page-bg: #2e1d24;
+  --surface-card: #3a2731;
+  --surface-hover: #523743;
+  --text: #fff0e6;
+  --text-muted: #d2b3b6;
+  --accent: #f28e5b;
+  --accent-hover: #dd7146;
+  --accent-contrast: #2e1d24;
+  --danger: #c4485d;
+  --danger-hover: #a9364b;
+  --success: #95c782;
+  --error: #ff9a9a;
+}
+
+:root[data-theme='ocean'] {
+  --page-bg: #082c3b;
+  --surface-card: #10495a;
+  --surface-hover: #155a6e;
+  --text: #eaf7f8;
+  --text-muted: #afd0d5;
+  --accent: #2bb6a8;
+  --accent-hover: #15988e;
+  --accent-contrast: #062b30;
+  --danger: #e05a70;
+  --danger-hover: #c8465d;
+  --success: #80d59e;
+  --error: #ff9ba5;
+}
+
+:root[data-theme='easter'] {
+  --page-bg: #f5edf6;
+  --surface-card: #fff9ed;
+  --surface-hover: #e8dceb;
+  --text: #30213a;
+  --text-muted: #6d596f;
+  --accent: #4e7356;
+  --accent-hover: #3d6047;
+  --accent-contrast: #ffffff;
+  --danger: #b24f67;
+  --danger-hover: #963d54;
+  --success: #287044;
+  --error: #a13c52;
+}
+
+:root[data-theme='halloween'] {
+  --page-bg: #211b2a;
+  --surface-card: #312438;
+  --surface-hover: #443047;
+  --text: #fff3dc;
+  --text-muted: #c9b6a5;
+  --accent: #e57832;
+  --accent-hover: #c95d24;
+  --accent-contrast: #24150d;
+  --danger: #d74d59;
+  --danger-hover: #b73b48;
+  --success: #9ebc6f;
+  --error: #ff8f83;
+}
+
+:root[data-theme='christmas'] {
+  --page-bg: #102a24;
+  --surface-card: #1a3830;
+  --surface-hover: #285045;
+  --text: #f2efe3;
+  --text-muted: #c0c9bd;
+  --accent: #b43a43;
+  --accent-hover: #922e38;
+  --accent-contrast: #ffffff;
+  --danger: #d14a50;
+  --danger-hover: #b43840;
+  --success: #a9ca83;
+  --error: #ff9696;
+}

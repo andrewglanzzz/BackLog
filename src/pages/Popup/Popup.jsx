@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
 import './Popup.css';
+import './themes.css';
 import Fuse from 'fuse.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDownload,
+  faGear,
+  faSearch,
+  faUpload,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
+import { importBacklogFile } from '../../../utils/backup';
+
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+const themes = [
+  { value: 'midnight', label: 'Midnight' },
+  { value: 'oled', label: 'OLED dark' },
+  { value: 'light', label: 'Light' },
+  { value: 'pistachio', label: 'Pistachio' },
+  { value: 'dracula', label: 'Dracula' },
+  { value: 'solarized', label: 'Solarized' },
+  { value: 'sunset', label: 'Sunset' },
+  { value: 'ocean', label: 'Ocean' },
+  { value: 'easter', label: 'Easter' },
+  { value: 'halloween', label: 'Halloween' },
+  { value: 'christmas', label: 'Christmas' },
+];
 
 const Popup = () => {
   const [activeTabData, setActiveTabData] = React.useState(null);
@@ -17,6 +39,12 @@ const Popup = () => {
   const [initialUrlListLength, setInitialUrlListLength] = React.useState(0);
   const [displayList, setDisplayList] = React.useState([]);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [backupStatus, setBackupStatus] = useState(null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [isDraggingBackup, setIsDraggingBackup] = useState(false);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('backlogTheme') || 'midnight'
+  );
 
   React.useEffect(() => {
     // Load the URL list from localStorage when the popup opens
@@ -37,7 +65,7 @@ const Popup = () => {
     }
 
     // Listen for messages from the content script
-    chrome.runtime.onMessage.addListener((message) => {
+    browserAPI.runtime.onMessage.addListener((message) => {
       if (message.action === 'sendURL') {
         const { url, imageUrl, albumName, artist, genre, rating } = message;
         setActiveTabData({ url, imageUrl, albumName, artist, genre, rating });
@@ -86,6 +114,11 @@ const Popup = () => {
   }, [sortColumn, sortOrder]);
 
   React.useEffect(() => {
+    localStorage.setItem('backlogTheme', theme);
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  React.useEffect(() => {
     // Reset the "BackLogged" state after 5 seconds
     if (isBackLogged) {
       const timeoutId = setTimeout(() => {
@@ -101,13 +134,13 @@ const Popup = () => {
 
   const handleClick = () => {
     // Send a message to the content script to retrieve the URL and album information
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    browserAPI.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs && tabs.length > 0) {
         const activeTab = tabs[0];
         const tabId = activeTab.id;
 
         // Send a message to the content script
-        chrome.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
+        browserAPI.tabs.sendMessage(tabId, { action: 'getURL' }, (response) => {
           // Handle the response from the content script
           if (response) {
             const { url, imageUrl, albumName, artist, genre, rating } =
@@ -160,6 +193,59 @@ const Popup = () => {
         });
       }
     });
+  };
+
+  const handleExport = () => {
+    const backup = {
+      format: 'backlog-export',
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      entries: urlList,
+    };
+    const file = new Blob([JSON.stringify(backup, null, 2)], {
+      type: 'application/json',
+    });
+    const downloadUrl = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `backlog-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    setBackupStatus({
+      message: `Exported ${urlList.length} albums.`,
+      type: 'success',
+    });
+  };
+
+  const handleImportFile = async (file) => {
+    if (!file) return;
+
+    try {
+      const result = await importBacklogFile(file);
+      setUrlList(result.entries);
+      setInitialUrlListLength(result.entries.length);
+      setBackupStatus({
+        message: `Imported ${result.importedCount} albums (${result.newCount} new, ${result.updatedCount} updated).`,
+        type: 'success',
+      });
+    } catch (error) {
+      setBackupStatus({
+        message: error.message || 'Could not import this file.',
+        type: 'error',
+      });
+    }
+  };
+
+  const handleBackupDrop = (event) => {
+    event.preventDefault();
+    setIsDraggingBackup(false);
+    handleImportFile(event.dataTransfer.files[0]);
+  };
+
+  const openImportPage = () => {
+    browserAPI.tabs.create({ url: browserAPI.runtime.getURL('options.html') });
   };
 
   const handleDelete = (url) => {
@@ -330,8 +416,87 @@ const Popup = () => {
       <h1
         className={`sticky-h1 h1-backlog ${isBackLogged ? 'backlogged' : ''}`}
       >
+        <button
+          className="settings-toggle"
+          type="button"
+          aria-label="Open settings"
+          title="Settings"
+          onClick={() => setSettingsOpen((open) => !open)}
+        >
+          <FontAwesomeIcon icon={faGear} />
+        </button>
         {isBackLogged ? 'BackLogged!' : 'BackLog'}
       </h1>
+      {settingsOpen && (
+        <section className="settings-panel" aria-label="Settings">
+          <div className="settings-heading">
+            <h2>Settings</h2>
+            <button
+              className="settings-close"
+              type="button"
+              aria-label="Close settings"
+              onClick={() => setSettingsOpen(false)}
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </div>
+          <label className="theme-select-label" htmlFor="theme-select">
+            Theme
+            <select
+              id="theme-select"
+              value={theme}
+              onChange={(event) => setTheme(event.target.value)}
+            >
+              {themes.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="settings-divider" />
+          <div
+            className={`backup-dropzone ${
+              isDraggingBackup ? 'drag-active' : ''
+            }`}
+            onDragOver={(event) => {
+              event.preventDefault();
+              setIsDraggingBackup(true);
+            }}
+            onDragLeave={() => setIsDraggingBackup(false)}
+            onDrop={handleBackupDrop}
+          >
+            <FontAwesomeIcon icon={faUpload} />
+            <span>Drop a JSON backup here</span>
+            <button
+              className="button-backup"
+              type="button"
+              onClick={openImportPage}
+            >
+              Choose file
+            </button>
+          </div>
+          <div className="settings-backup-actions">
+            <button
+              className="button-backup"
+              type="button"
+              onClick={handleExport}
+            >
+              <FontAwesomeIcon icon={faDownload} /> Export JSON
+            </button>
+            <span
+              className={`backup-status ${
+                backupStatus ? backupStatus.type : ''
+              }`}
+              role="status"
+              aria-live="polite"
+              title={backupStatus ? backupStatus.message : ''}
+            >
+              {backupStatus ? backupStatus.message : ''}
+            </span>
+          </div>
+        </section>
+      )}
       {!showWarning ? ( // <-- Hide everything behind warning message
         <>
           <button
@@ -450,10 +615,7 @@ const Popup = () => {
                       }`}
                       onClick={() => handleDelete(data.url)}
                     >
-                      <FontAwesomeIcon
-                        icon={faXmark}
-                        style={{ color: '#FFFFFF' }}
-                      />
+                      <FontAwesomeIcon icon={faXmark} />
                     </button>
                   </div>
                 ))}
